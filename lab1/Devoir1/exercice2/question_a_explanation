@@ -1,0 +1,13 @@
+/**
+ *  Benjamin Kataliko Viranga 8842942
+ *  Laboratoire 1 (Devoir 1) - Exercice 2
+ *  CSI2772
+ * */
+
+
+Ce programme demande a l'utilisateur d'entrer un integer 1,2 ou 3.
+Le choix 1 permettra de calculer la surface d'un disque et le choix 2 permettra de calculer le volume d'un cylindre.
+Le programme continuera de tourner jusqu'a ce que l'utilisateur entre le choix 3.
+De la, le nombre de fois pour lesquelles les choix 1 et 2 ont ete utilises seront egalement affiches.
+---
+

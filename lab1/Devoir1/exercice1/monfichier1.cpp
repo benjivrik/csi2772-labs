@@ -33,7 +33,7 @@ int convert_int_to_octal_no_rec(int value){
 }
 
 // convertir un integer en hexadecimal
-// return la repres
+// return la representation en string
 string convert_int_to_hex(int value){
     char hex[100]; // un array de char 
     sprintf(hex, "%x", value); // utiliser la fonction sprintf() pour confirmer au format hexadecimal
@@ -70,15 +70,29 @@ int main(){
     int   input_entier;
     char  input_char;
 
-    cout << "Entrer un entier :" << endl;
+    cout << "Entrer un entier :" ;
     cin >> input_entier;
     cout << "Affichage en octal :" << convert_int_to_octal(input_entier) << endl;
     cout << "Affichage en hexa :" << convert_int_to_hex(input_entier) << endl;
 
     cout << "Entrer un entier :" << endl;
-    cin >> input_entier;
-    cout << "Affichage en octal :" << convert_int_to_octal_no_rec(input_entier) << endl;
-    cout << "Affichage en hexa :" << convert_int_to_hex_other(input_entier) << endl;
+    cin  >> input_entier;
+    cout << "Affichage en octal :" << oct << input_entier << endl;
+    // cout << "Affichage en octal :" << convert_int_to_octal_no_rec(input_entier) << endl; // autre possibilite
+
+    cout << "Affichage en hexa :" << hex << input_entier << endl; 
+    // cout << "Affichage en hexa :" << convert_int_to_hex_other(input_entier) << endl;  // autre possibilite 
+
+    cout << "Entrer un reel :" ;
+    cin  >> input_reel;
+    cout << setprecision(3) << fixed << input_reel << endl; // sans notation scientifique
+    cout << setprecision(3) << scientific << input_reel << endl; // avec notation scientifique 
+
+    cout << "Entrer un caractere :";
+    cin >> input_char;
+    cout << input_char << endl;
+    cout << hex << (int) input_char;
+
 
     return 0;
 }

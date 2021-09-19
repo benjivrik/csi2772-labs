@@ -1,7 +1,13 @@
 //*monfichier3b.cpp : Ex3b Devoir1 CSI2772A*/
+/**
+ *  Benjamin Kataliko Viranga 8842942
+ *  Laboratoire 1 (Devoir 1) - Exercice 3 (b)
+ *  CSI2772
+ * */
+
 
 #include <iostream>
-# include <vector>
+#include <vector>
 
 using namespace std;
 
@@ -25,7 +31,32 @@ int rechercheIndex(vector<int> T, int imax) {
 */
 void trier(vector<int>& T) {
 
-	//VOTRE VIENT ICI
+	// vecteur temporaire utilisee dans la fonction.
+	vector<int> temp_vec(T.size(), 0);
+	vector<int>::iterator iter ;  // pour parcourir le vecteur
+	int max_idx; // used in loop below
+	int index_to_add = T.size()-1; // start adding items from this position
+	int imax =  T.size() - 1;
+
+	// copier les element de la reference dans le vecteur temporaire
+	for(int i = 0; i <  T.size(); i++){
+		temp_vec[i] = T[i];
+	}
+	
+	while(imax > 0){
+		iter = temp_vec.begin(); // iterateur mis à la position initial
+		// rechercher la valeur maximale du tableau
+	    max_idx = rechercheIndex(temp_vec, imax);
+		T[index_to_add--] = temp_vec[max_idx]; // ajouter l'element correspondant dans la reference
+	    iter += max_idx; // bouger l'iterateur à la position désirée
+		temp_vec.erase(iter);   // remove the element found in the previous search
+		imax--;   // decrementer la position d'ajout, car on supprime un élément à chaque loop dans le temp_evc
+	}
+
+    // add the last element in the vector
+	max_idx =  imax;
+	T[index_to_add] = temp_vec[max_idx];
+
 }
 
 /* Fonction saisieTab pour saisir les valeurs de votre tableau

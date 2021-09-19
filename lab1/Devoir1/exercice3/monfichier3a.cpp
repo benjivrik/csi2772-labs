@@ -1,4 +1,10 @@
 /*monfichier3a.cpp : Ex3a Devoir1 CSI2772A*/
+/**
+ *  Benjamin Kataliko Viranga 8842942
+ *  Laboratoire 1 (Devoir 1) - Exercice 3 (a)
+ *  CSI2772
+ * */
+
 
 #include <iostream>
 # include <vector>
@@ -43,6 +49,26 @@ vector<int> saisieTab() {
 */ 
 vector<int> trier(vector<int> T) {
 	//VOTRE CODE VIENT ICI
+	vector<int> to_return(T.size(), 0);
+	vector<int>::iterator iter ;  // pour parcourir le vecteur
+	int max_idx; // used in loop below
+	int index_to_add = T.size()-1; // start adding items from this position
+	int imax =  T.size() - 1;
+	while(imax > 0){
+		iter = T.begin(); // iterateur mis à la position initial
+		// rechercher la valeur maximale du tableau
+	    max_idx = rechercheIndex(T, imax);
+		to_return[index_to_add--] = T[max_idx]; // ajouter l'element correspondant dans le nouveau vecteur
+	    iter += max_idx; // bouger l'iterateur à la position désirée
+		T.erase(iter);   // remove the element found in the previous search
+		imax--;   // decrementer la position d'ajout, car on supprime un élément à chaque loop
+	}
+
+    // add the last element in the vector
+	max_idx =  imax;
+	to_return[index_to_add] = T[max_idx];
+
+	return to_return;
 }
 
 /* Fonction principale main
