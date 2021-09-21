@@ -1,6 +1,5 @@
 //*monfichier3b.cpp : Ex3b Devoir1 CSI2772A*/
 /**
- *  Benjamin Kataliko Viranga 8842942
  *  Laboratoire 1 (Devoir 1) - Exercice 3 (b)
  *  CSI2772
  * */

@@ -1,5 +1,4 @@
 /**
- *  Benjamin Kataliko Viranga 8842942
  *  Laboratoire 1 (Devoir 1) - Exercice 1
  *  CSI2772
  * */
