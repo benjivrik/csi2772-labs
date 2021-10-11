@@ -20,8 +20,8 @@ int main(){
     }
 
     // Display the game array
-    // for(int i = 0; i < 32; i++){
-    //     cout << "idx : " << i << endl;
-    //     cout << "Color : " << game[i].color << "- Face : " << game[i].face << endl;
-    // }
+    for(int i = 0; i < 32; i++){
+        cout << "idx : " << i << endl;
+        cout << "Color : " << game[i].color << "- Face : " << game[i].face << endl;
+    }
 }
