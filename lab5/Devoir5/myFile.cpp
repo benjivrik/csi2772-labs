@@ -30,7 +30,7 @@ void Card::write(){
 		card_color = "Spades";
 		break;
 	default:
-	    cout << "Please check the card color in write() function. Something went wrong. " << endl;
+	    cout << "Please check the card color in write() function. Something went wrong. color: " << card_color << endl;
 		card_color = "???";
 		break;
 	}
@@ -64,12 +64,13 @@ void Card::write(){
 //
 void CardsSet::novSet(){
 	int idx = 0;
+	number = 0;
     for( int c =  club; c <= spade; c = (color) (c+1) ){
        for(int f = 1 ; f <= 13; f++ ){
            set[idx++] = Card((color) c, f);
+		   number++; // the number of item in the set
        }
     }
-	
 }
 
 //
@@ -90,38 +91,125 @@ void CardsSet::shuffle(){
 
 //
 Card CardsSet::take(){
-
-	int idx;
-	int array_size = 52;
 	Card to_return;
-	srand(time(0));
-	idx = rand() % array_size; // get the index of the card
-	to_return = this->set[idx];
-	cout << "You get Card : " ;
-	to_return.write();
-	cout << endl;
-	number++;
-    
+	//
+	if(number > 0){
+		to_return = this->set[--number];
+		cout << "You get Card : ";
+		to_return.write();
+		cout << endl;
+	}
+		
 	return to_return;
-     
 }
+
 //
 Card CardsSet::lookIn(int no){
 	return this->set[no-1];
 }
-
+//
 void CardsSet::put(Card k){
-     
+     this->set[number++] =  k; // add the card in the set
 }
 //
 int Player::play(){
-	// to do
-	return 0;
+	bool add_card = true;
+	char answer[3];
+	int points = 0;
+
+    // based on the implementation of take(). The total point seems to be calculated on the first packet.take() in the main() function.
+	if(!this->computer){ 
+		// get the initial card removed when the packet.take() is called in the main() function
+		this->inHand.put(this->packet.lookIn(this->packet.numCards()+1)); // +1 since the number of card in the packet is decreased when packet.take() is called.
+		//
+		points = this->countPoints();
+		cout << "Your score is " << points <<" points." <<endl;
+	}else{
+		cout << endl << "Computer is playing ..." << endl << endl;
+	}
+	// add card into the player hand
+	while(add_card && points < 21){
+		
+		if(!this->computer) { // the human is playing
+			cout << "Any additional card ?" << endl;
+			cin >> answer;
+	    	add_card = answer[0] == 'y';
+
+			if(add_card){
+
+				this->inHand.put(this->packet.take());
+				// count the points in the hand
+				points = this->countPoints();
+				cout << "Your score is " << points <<" points." <<endl;
+
+			}else{
+				add_card = false;
+			}
+		}else{ // the computer is playing
+			this->inHand.put(this->packet.take());
+			// count the points in the hand
+			points = this->countPoints();
+
+			cout << endl << "Computer score is " << points <<" points." <<endl;
+
+			// choose a random computer answer
+			srand(time(0)); // starting point for producing the random numbers
+			string possible_answer_str = "yn"; // idx 0 is y and idx 1 is 0
+			//
+			int idx_rep = rand()%2;
+
+			// get the corresponding char for the computer add_card boolean
+			answer[0] = possible_answer_str[idx_rep];
+
+			add_card = answer[0] == 'y';
+			
+			if(add_card){
+
+				this->inHand.put(this->packet.take());
+				// count the points in the hand
+				points = this->countPoints();
+
+				cout << "Computer score is " << points <<" points." <<endl;
+
+			}else{
+				add_card = false;
+			}
+
+		}
+	
+	}
+
+	this->inHand.empty(); // empty the number of card in the hand;
+
+	if(this->computer) cout << endl <<  "Computer stopped playing..." << endl << endl;
+
+	return points;
 }
 
 int Player::countPoints(){
-	// to do
-	return 0;
+	
+	int total_points = 0;
+	int number_of_Ace_card = 0;  // comptez le nombre de As trouvé pour évaluer les points
+
+	// comptez les points
+
+	for(int i = 1; i <= this->inHand.numCards() ; i++){
+		Card current_card = this->inHand.lookIn(i); // get the corresponding card
+		total_points += current_card.value();       // add the value
+		if(current_card.value() == 1) number_of_Ace_card++; // an Ace card was found
+	}
+
+    // check if the number of point is higher the card Ace
+	// si total points >= 21 le As compte pour 1 
+	// sinon il compte pour 14
+	if(total_points < 21)
+	{
+	   // remove the value 1 added in the total_points in the previous loop
+       total_points -= 1*number_of_Ace_card; 
+	   total_points += 14*number_of_Ace_card; // add the value 14 for the card Ace
+	}
+
+	return total_points;
 }
 
 //
