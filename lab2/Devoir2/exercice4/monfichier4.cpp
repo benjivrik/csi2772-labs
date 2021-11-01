@@ -76,7 +76,7 @@ void display(char* tab[], int const& nbre)
     for(int pos = 0; pos < nbre; pos++){
         while(*(tab[pos])){
             to_display += *(tab[pos]);
-            *(tab[pos])++; // move pointer
+            (tab[pos])++; // move pointer
         }
         cout << "La chaine " << pos << " est " << to_display << endl;
         to_display="";
