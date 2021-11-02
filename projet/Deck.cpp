@@ -1,6 +1,9 @@
-#include "Deck.h"
 
-template <typename T = Card> Deck<T>::Deck():NUMBER_OF_CARDS(104), vector<T>(NUMBER_OF_CARDS){
+#include "Card.h"
+#include "Deck.h"
+#include <vector>
+
+template <typename T> Deck<T>::Deck():NUMBER_OF_CARDS(104), std::vector<T>(NUMBER_OF_CARDS){
      // add 20 Blue Cards
      for(int i = 0; i <  20;  i++){
          Blue b;
@@ -44,7 +47,7 @@ template <typename T = Card> Deck<T>::Deck():NUMBER_OF_CARDS(104), vector<T>(NUM
 
 }
 
-template <typename T = Card> T* Deck<T>::draw(){
+template <typename T> T* Deck<T>::draw(){
     // TO DO
 }
 // implement the friends functions
