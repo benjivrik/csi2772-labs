@@ -1,7 +1,10 @@
-#include <iostream>
 #include "Card.h"
 using namespace std;
 
+// Card
+
+// destructor
+Card::~Card() {}
 
 // Blue
 Blue::Blue(std::string name){
@@ -43,6 +46,16 @@ int Blue::getCardsPerCoin(int coins){
  * */
 string Blue::getName(){
     return this->name;
+}
+
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void Blue::print(std::ostream& out){
+    //TO DO
 }
 
 // Chili
@@ -87,6 +100,15 @@ int Chili::getCardsPerCoin(int coins){
 
     return  numCards;
 }
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void Chili::print(std::ostream& out){
+    //TO DO
+}
 
 // Stink
 Stink::Stink(std::string name){
@@ -130,6 +152,15 @@ int Stink::getCardsPerCoin(int coins){
 
     return  numCards;
 }
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void Stink::print(std::ostream& out){
+    //TO DO
+}
 
 // Green
 Green::Green(std::string name){
@@ -170,6 +201,15 @@ int Green::getCardsPerCoin(int coins){
     }
 
     return  numCards;
+}
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void Green::print(std::ostream& out){
+    //TO DO
 }
 
 // soy
@@ -213,6 +253,15 @@ int soy::getCardsPerCoin(int coins){
     }
 
     return  numCards;
+}
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void soy::print(std::ostream& out){
+    //TO DO
 }
 
 // black
@@ -258,6 +307,16 @@ int black::getCardsPerCoin(int coins){
     return  numCards;
 }
 
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void black::print(std::ostream& out){
+    //TO DO
+}
+
 // Red
 Red::Red(std::string name){
     this->name = name;
@@ -301,6 +360,15 @@ int Red::getCardsPerCoin(int coins){
     return  numCards;
 }
 
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void Red::print(std::ostream& out){
+    //TO DO
+}
 
 // garden
 garden::garden(std::string name){
@@ -344,3 +412,14 @@ int garden::getCardsPerCoin(int coins){
 
     return  numCards;
 }
+
+/**
+ * 
+ * add description here
+ * 
+ * */
+
+void garden::print(std::ostream& out){
+    //TO DO
+}
+
