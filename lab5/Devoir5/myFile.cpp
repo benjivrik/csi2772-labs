@@ -79,7 +79,7 @@ void CardsSet::shuffle(){
 	int num_shuffle_left = 52; // nombre de shuffle restant dans la loupe
 	int array_size = 52;       // size of the array to shuffle
 	Card temp_card; 
-    srand(time(0)); // starting point for producing the random numbers
+     // starting point for producing the random numbers
 	while(num_shuffle_left-- > 0){
 		idx =  rand() % array_size;    // get the position to swap
 		temp_card = this->set[idx] ; // get the card at the generated index
@@ -99,7 +99,7 @@ Card CardsSet::take(){
 		to_return.write();
 		cout << endl;
 	}
-		
+		srand(time(0));
 	return to_return;
 }
 

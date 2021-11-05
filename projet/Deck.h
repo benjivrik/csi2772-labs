@@ -13,17 +13,11 @@ class Deck: public std::vector<T>{
                 
                      
              }
-             // cout << ">>> : " << this->at(1) << endl;
-             // cout << "Name pt >>> : " << this->at(2)->getName()<< endl;
-             // cout << ">>> : " << this->at(1)->getName() << endl;
-             // cout <<  "hfhvvf" << this->size() << endl;
              // add 18 Chili Cards
              for(int i = 0; i < 18; i++){
                      Chili* c = new Chili;
                      this->push_back(c);
              }
-
-             // cout << "Name pt >>> : " << this->at(25)->getName()<< endl;
              // add 16 Stink Cards
              for(int i = 0; i < 16; i++){
                      Stink* s = new Stink;
@@ -56,6 +50,13 @@ class Deck: public std::vector<T>{
              }
 
         };
+        Deck(const Deck<T>& d):NUMBER_OF_CARDS(104){
+            // get the items from d inside this current deck
+            for(int i = 0; i < NUMBER_OF_CARDS; i++){
+                this->push_back(d.at(i));
+            }
+            std::cout << "Deck of size("<<d.size()<<") copied."<<std::endl;
+        }
         T* draw();
         ~Deck(){
             for(int i = 0; i < this->size(); i++){

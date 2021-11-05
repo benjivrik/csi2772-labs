@@ -1,8 +1,17 @@
+#include "Deck.h"
+#include <algorithm>
+
 class CardFactory{
     private:
-        CardFactory();
-        static CardFactory* instance;
+        Deck<Card*> deck;
+        CardFactory(){};
     public:
-        static CardFactory* getFactory();
-        // Deck<Card> getType();
+        static CardFactory* instance;
+        static CardFactory* getFactory(){
+            if(!instance)
+                instance = new CardFactory;
+            return instance;
+        };
+        Deck<Card*> getDeck();
 };
+
