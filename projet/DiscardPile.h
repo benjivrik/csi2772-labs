@@ -1,12 +1,18 @@
+
+
 #include <vector>
 #include <iostream>
 
+#ifndef DISCARD_PILE_H
+#define DISCARD_PILE_H
 
-template <typename T> 
-class DiscardPile:  public std::vector<T>{
+#include "Card.h"
+class CardFactory;
+
+class DiscardPile:  public std::vector<Card*>{
     public:
-        DiscardPile(): std::vector<T>(){};
-        // DiscardPile(istream&, const CardFactory*): std::vector<T>();
+        DiscardPile(): std::vector<Card*>(){};
+        DiscardPile(std::istream&, const CardFactory*): std::vector<Card*>(){};
         DiscardPile& operator+=(Card* c){
             this->push_back(c);
             return *this;
@@ -14,6 +20,8 @@ class DiscardPile:  public std::vector<T>{
         Card* pickUp();
         Card* top();
         void print(std::ostream&);
-         // friend ostream& operator<<( ostream &output );
-        // friend istream& operator>>( istream &input, const CardFactory* );
+        friend std::ostream& operator<<( std::ostream &output, const DiscardPile& dp );
+
 };
+
+#endif

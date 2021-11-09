@@ -20,9 +20,9 @@ int main(){
 
     for(int i = 0; i < d.size(); i++){
         cout << "id=" << i << ":" << d.at(i)->getName() << endl;
-        cout << "TEST" << endl;
-        d.at(i)->print(std::cout);
-        cout << endl;
+        // cout << "TEST" << endl;
+        // d.at(i)->print(std::cout);
+        // cout << endl;
     }
 
     

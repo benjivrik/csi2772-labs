@@ -1,16 +1,27 @@
 #include "DiscardPile.h"
 
-template <typename T> Card* DiscardPile<T>::pickUp(){
-    return (Card*) this->pop_back();
+Card* DiscardPile::pickUp(){
+    Card* card;
+    card =  this->back();
+    this->pop_back();
+    return card;
 }
 
-template <typename T> Card*  DiscardPile<T>::top(){
-    return (Card*) this->front();
+Card* DiscardPile::top(){
+    return  this->front();
 }
 
-template <typename T> void  DiscardPile<T>::print(std::ostream& os){
+void  DiscardPile::print(std::ostream& os){
     for(int i = 0; i < this->size(); i++){
-        os << this->at(i)->getName() << std::endl;
+        os << this->at(i)->getName()[0]<< std::endl;
     }
+}
+
+std::ostream& operator<<( std::ostream &output, const DiscardPile& dp ){
+    for(int i = 0; i < dp.size(); i++){
+        output << dp.at(i)->getName()[0] << std::endl;
+    }
+
+    return output;
 }
 

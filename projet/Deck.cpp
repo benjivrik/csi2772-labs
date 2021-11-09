@@ -2,7 +2,7 @@
 using namespace std;
 
 // draw
- Card* Deck::draw(){
+Card* Deck::draw(){
     Card* card =  this->back(); // get the last added card
     this->pop_back(); // remove the last element from the deck
     return card;  
@@ -14,22 +14,15 @@ Deck& Deck::operator=(const Deck& d){
     }
 }
 // <<
-ostream& operator<<( ostream &output, const Deck &d ){
-     for(int i = 0; i < d.size(); i++){
-        output << d.at(i)->getName() << endl;
+ostream& operator<<( ostream& output, const Deck& d ){
+
+    for(int i = 0; i < d.size(); i++){
+        output << d.at(i)->getName()[0] << endl;
     }
 
     return output;
 }
 
-// >>
-// ostream& operator<<( ostream &output, const Deck &d ){
-//      for(int i = 0; i < this->size(); i++){
-//         output << d.at(i)->getName() << endl;
-//     }
-
-//     return output;
-// }
 
 
 

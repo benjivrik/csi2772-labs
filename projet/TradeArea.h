@@ -1,11 +1,24 @@
+#ifndef TRADEAREA_H
+#define TRADEAREA_H
+
+#include "Card.h"
+#include <list>
+
+class CardFactory;
+
 class TradeArea{
+     std::list<Card*> tradeAr; 
      public:
-        TradeArea();
-        TradeArea(istream&, const CardFactory*);
-        TradeArea& operator+=(Card*);
+        TradeArea(){};
+        TradeArea(std::istream&, const CardFactory*){};
+        TradeArea& operator+=(Card* card){
+             tradeAr.push_back(card);
+        };
         bool legal(Card*);
-        Card* trade(string);
+        Card* trade(std::string);
         int numCards();
         // friend ostream& operator<<( ostream &output );
-        friend istream& operator>>( istream &input, const CardFactory* );
+        friend std::istream& operator>>( std::istream &input, const CardFactory* );
 };
+
+#endif
