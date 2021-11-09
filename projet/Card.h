@@ -1,5 +1,8 @@
 #include <iostream>
 
+#ifndef CARD_H
+#define CARD_H
+
 class Card{
     public:
     virtual int getCardsPerCoin(int coins)=0;
@@ -83,3 +86,5 @@ class garden : public virtual Card {
         std::string getName();
         void print(std::ostream& out);
 };
+
+#endif
