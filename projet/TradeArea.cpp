@@ -1,6 +1,12 @@
 #include "TradeArea.h"
 
-// Description :
+/**
+ * @brief 
+ * 
+ * @param card 
+ * @return true 
+ * @return false 
+ */
 bool TradeArea::legal (Card* card){
 
     bool found = false;
@@ -13,7 +19,12 @@ bool TradeArea::legal (Card* card){
 }
 
 
-// Description :
+/**
+ * @brief 
+ * 
+ * @param card 
+ * @return Card* 
+ */
 Card* TradeArea::trade (std::string card){
 
     Card* found;
@@ -26,9 +37,23 @@ Card* TradeArea::trade (std::string card){
     return found;
 }
 
-// Description
+/**
+ * @brief 
+ * 
+ * @return int 
+ */
 int TradeArea::numCards(){ return tradeAr.size(); }
 
+
+
+/**
+ * @brief 
+ * 
+ * @param input 
+ * @param cf 
+ * @return std::istream& 
+ */
 std::istream& operator>>( std::istream &input, const CardFactory* cf){
     // TO DO
+    return input;
 };

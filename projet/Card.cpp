@@ -3,18 +3,26 @@ using namespace std;
 
 // Card
 
-// destructor
+/**
+ * @brief Destroy the Card:: Card object
+ * 
+ */
 Card::~Card() {}
 
-// Blue
+/**
+ * @brief Construct a new Blue:: Blue object
+ * 
+ * @param name 
+ */
 Blue::Blue(std::string name){
     this->name = name;
 }
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int Blue::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -40,43 +48,47 @@ int Blue::getCardsPerCoin(int coins){
 }
 
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string Blue::getName(){
     return this->name;
 }
 
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
-
+ * @param out 
+ */
 void Blue::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }
 
-// Chili
+/**
+ * @brief Construct a new Chili:: Chili object
+ * 
+ * @param name 
+ */
 Chili::Chili(std::string name){
     this->name = name;
 }
 
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string Chili::getName(){
     return this->name;
 }
 
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int Chili::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -100,35 +112,41 @@ int Chili::getCardsPerCoin(int coins){
 
     return  numCards;
 }
-/**
- * 
- * add description here
- * 
- * */
 
+/**
+ * @brief 
+ * 
+ * @param out 
+ */
 void Chili::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }
 
-// Stink
+/**
+ * @brief Construct a new Stink:: Stink object
+ * 
+ * @param name 
+ */
 Stink::Stink(std::string name){
     this->name = name;
 }
 
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string Stink::getName(){
     return this->name;
 }
 
+
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int Stink::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -152,12 +170,13 @@ int Stink::getCardsPerCoin(int coins){
 
     return  numCards;
 }
-/**
- * 
- * add description here
- * 
- * */
 
+
+/**
+ * @brief 
+ * 
+ * @param out 
+ */
 void Stink::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }

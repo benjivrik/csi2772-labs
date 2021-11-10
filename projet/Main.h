@@ -8,11 +8,11 @@
 #include "Deck.h"
 #include "CardFactory.h"
 #include "DiscardPile.h"
-// #include "Hand.h"
+#include "Hand.h"
 // #include "Player.h"
 // #include "Table.h"
 #include "TradeArea.h"
-// #include "Chain.h"
+#include "Chain.h"
 
 
 
