@@ -46,6 +46,7 @@ class Hand{
             }
             return card;  
         };
+        int numCards();
         // friend ostream& operator<<( ostream &output );
         friend std::istream& operator>>( std::istream&, const CardFactory* );
 

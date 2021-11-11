@@ -20,5 +20,12 @@ Card* Hand::top(){
     return pHand.front();
 }
 
-
+/**
+ * @brief 
+ * 
+ * @return int 
+ */
+int Hand::numCards(){
+    return pHand.size();
+}
 
