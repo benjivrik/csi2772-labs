@@ -11,10 +11,11 @@ class CardFactory;
 class Chain_Base{
     protected:
         std::vector<Card*>  chain;
-
+        std::string chainType;
     public:
-        virtual int sell() = 0;
+        int sell(){ return -1;}; // unimplemented
         int getSize();
+        std::string getChainType();
   
 };
 
@@ -23,9 +24,13 @@ template <typename T = Card>
 class Chain : public virtual Chain_Base{
     // TO DO
     public:
-        Chain(){};
+        Chain(){ chainType = typeid(T).name();};
         Chain(std::istream&, const CardFactory*);
         Chain<T>& operator+=(Card* card){
+
+            if(getSize() == 0)
+               chainType = typeid(card).name();// update the chain type
+
             if(typeid(T) == typeid(card) ){
                 chain.push_back(card);
                 return *this;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
+
 // #include <ctime>
 
 
@@ -9,10 +10,11 @@
 #include "CardFactory.h"
 #include "DiscardPile.h"
 #include "Hand.h"
-#include "Player.h"
-// #include "Table.h"
-#include "TradeArea.h"
 #include "Chain.h"
+#include "Player.h"
+#include "Table.h"
+#include "TradeArea.h"
+
 
 
 

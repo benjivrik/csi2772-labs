@@ -2,9 +2,11 @@
 #define PLAYER_H
 
 
+#include <cstdlib>
 #include <vector>
 #include "Hand.h"
 #include "Chain.h"
+
 
 class Player{
     std::string pName; // player name
@@ -30,6 +32,9 @@ class Player{
             return *(pChains.at(i));
         };
 
+        void takeCard(Card*); //added
+        void playCard(); //added
+
         std::string getName();
         int getNumCoins();
         int getMaxNumChains();
@@ -44,7 +49,8 @@ class Player{
                 }
                 output << std::endl;
             }
-        }
+        };
+        
         
 };
 

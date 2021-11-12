@@ -8,6 +8,15 @@
 int Chain_Base::getSize(){
     return chain.size();
 }
+
+/**
+ * @brief Get the Chain Type 
+ * 
+ * @return std::string 
+ */
+std::string Chain_Base::getChainType(){
+    return chainType;
+}
 /**
  * @brief Construct a new Chain< T>:: Chain object
  * 

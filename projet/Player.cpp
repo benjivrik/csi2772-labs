@@ -9,6 +9,35 @@ std::string Player::getName(){
     return this->pName;
 }
 
+void Player::playCard(){
+    if (pHand->numCards() < 0)
+        std::cout << "(PlayCard) Not enough card in hand for player : " << pName << std::endl;
+    else{
+        if(pChains.size() < MAX_NUM_CHAINS){
+            Card* card = pHand->top(); // should be play here...
+            Chain_Base* new_chain;
+            if(card->getName() == "Blue") new_chain = new Chain<Blue>;
+            else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
+            else if(card->getName() == "Stink") new_chain = new Chain<Stink>;
+            else if(card->getName() == "Green") new_chain = new Chain<Green>;
+            else if(card->getName() == "soy")   new_chain = new Chain<soy>;
+            else if(card->getName() == "black") new_chain = new Chain<black>;
+            else if(card->getName() == "Red")   new_chain = new Chain<Red>;
+            else if(card->getName() == "garden")new_chain = new Chain<garden>;
+            else {
+                std::cout << "(playCard) Check the card name. Value received : " << card->getName() << std::endl;
+                new_chain = nullptr; 
+                exit(1);
+              
+            }
+            pChains.push_back(new_chain);
+
+        }else{
+            std::cout << "Player " <<pName << "has reached the maximum allowed value of chain ("<<MAX_NUM_CHAINS<<")." << std::endl;
+           // item should be sold ?
+        }
+    } 
+}
 /**
  * @brief 
  * 
@@ -40,4 +69,13 @@ void Player::buyThirdChain(){
 
 }
 
+
+/**
+ * @brief 
+ * 
+ */
+
+void Player::takeCard(Card* card){
+    *pHand += card;  // add the card in the player hand
+}
 
