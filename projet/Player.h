@@ -17,6 +17,7 @@ class Player{
     public:
         Player(std::string& name): MAX_NUM_CHAINS(3){
             pName = name;
+            pCoins = 0;
             pHand = new Hand();
 
         };
@@ -32,8 +33,9 @@ class Player{
             return *(pChains.at(i));
         };
 
-        void takeCard(Card*); //added
-        void playCard(); //added
+        void takeCard(Card*); // added
+        Card* playCard();    // added
+        Card* removeCard(); // discard card to the pile
 
         std::string getName();
         int getNumCoins();
@@ -41,7 +43,7 @@ class Player{
         int getNumChains();
         void buyThirdChain();
         void printHand(std::ostream& output, bool in){
-            if(in){
+            if(!in){
                 output << pHand->top()->getName() << std::endl;
             }else{
                 for(int i = 0; i < pHand->numCards(); i++){

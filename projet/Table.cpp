@@ -1,13 +1,52 @@
 #include "Table.h"
 
 
-//
+/**
+ * @brief 
+ * 
+ * @param pName 
+ * @return true 
+ * @return false 
+ */
 bool Table::win(std::string& pName){
+    bool win = false;
+    if(deck->size() == 0){
+      
+       if(p1->getNumCoins() > p2->getNumCoins()){
+           pName = p1->getName();
+       }
+       else if(p1 ->getNumCoins() < p2->getNumCoins()){
+           pName = p2->getName();
+       }
+       else{ //  equality
+           pName = "Equality";
+       }
 
+       win = true;
+    }
+    return win;
 }
-//
-void Table::printHand(bool in){
 
+/**
+ * @brief 
+ * 
+ * @param in 
+ */
+void Table::printHand(bool in){
+     Player* current = currentPlayer == 0 ? p1 : p2; // get the current player
+     current -> printHand(std::cout, in);
+}
+
+/**
+ * @brief 
+ * 
+ * @param id 
+ * @return Player* 
+ */
+Player* Table::getPlayer(int id){
+    currentPlayer = id;
+    if (id==0) return p1;
+    else return p2;
 }
 
 //

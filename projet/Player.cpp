@@ -9,12 +9,13 @@ std::string Player::getName(){
     return this->pName;
 }
 
-void Player::playCard(){
+Card* Player::playCard(){
+    Card* card = nullptr;
     if (pHand->numCards() < 0)
         std::cout << "(PlayCard) Not enough card in hand for player : " << pName << std::endl;
     else{
         if(pChains.size() < MAX_NUM_CHAINS){
-            Card* card = pHand->top(); // should be play here...
+            card = pHand->top(); // should be play here...
             Chain_Base* new_chain;
             if(card->getName() == "Blue") new_chain = new Chain<Blue>;
             else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
@@ -36,7 +37,8 @@ void Player::playCard(){
             std::cout << "Player " <<pName << "has reached the maximum allowed value of chain ("<<MAX_NUM_CHAINS<<")." << std::endl;
            // item should be sold ?
         }
-    } 
+    }
+    return card; 
 }
 /**
  * @brief 
@@ -79,3 +81,20 @@ void Player::takeCard(Card* card){
     *pHand += card;  // add the card in the player hand
 }
 
+
+/**
+ * @brief 
+ * 
+ */
+Card* Player::removeCard(){
+    return pHand->play();
+}
+
+/**
+ * @brief 
+ * 
+ * @return int 
+ */
+int Player::getNumCoins(){
+    return pCoins;
+}
