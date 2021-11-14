@@ -98,3 +98,16 @@ Card* Player::removeCard(){
 int Player::getNumCoins(){
     return pCoins;
 }
+
+
+/**
+ * @brief 
+ * 
+ * @param output 
+ * @param player 
+ * @return std::ostream 
+ */
+std::ostream operator<<(std::ostream& output, const Player& player){
+    // TO DO
+    return output;
+}

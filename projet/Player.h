@@ -53,6 +53,7 @@ class Player{
             }
         };
         
+        friend std::ostream& operator<<( std::ostream&,  const Player& );
         
 };
 

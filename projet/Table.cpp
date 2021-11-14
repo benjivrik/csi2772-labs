@@ -49,6 +49,15 @@ Player* Table::getPlayer(int id){
     else return p2;
 }
 
-//
-// std::istream& operator>>( std::istream &input, const CardFactory* cf){
-// }
+
+/**
+ * @brief 
+ * 
+ * @param output 
+ * @param tb 
+ * @return std::ostream 
+ */
+std::ostream operator<<(std::ostream& output, const Table& tb){
+    // TO DO
+    return output;
+}

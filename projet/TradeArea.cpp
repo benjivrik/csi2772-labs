@@ -45,15 +45,14 @@ Card* TradeArea::trade (std::string card){
 int TradeArea::numCards(){ return tradeAr.size(); }
 
 
-
 /**
  * @brief 
  * 
- * @param input 
- * @param cf 
- * @return std::istream& 
+ * @param output 
+ * @param tr_arr 
+ * @return std::ostream 
  */
-std::istream& operator>>( std::istream &input, const CardFactory* cf){
+std::ostream operator<<(std::ostream& output, const TradeArea& tr_arr){
     // TO DO
-    return input;
-};
+    return output;
+}
