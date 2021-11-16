@@ -68,7 +68,7 @@ int Player::getNumChains(){
  * 
  */
 void Player::buyThirdChain(){
-
+    // TO DO
 }
 
 
@@ -107,7 +107,13 @@ int Player::getNumCoins(){
  * @param player 
  * @return std::ostream 
  */
-std::ostream operator<<(std::ostream& output, const Player& player){
-    // TO DO
+std::ostream& operator<<(std::ostream& output, const Player& player){
+
+    output << player.pName << " " << player.pCoins << std::endl;
+    for(auto chain : player.pChains){
+        output << chain;
+        output << std::endl;
+    }
+
     return output;
 }

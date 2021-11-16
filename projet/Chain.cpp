@@ -69,6 +69,6 @@ std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
         d.chain.at(i)->print(output);
         output << " ";
     }
-
+    
     return output;
 };

@@ -17,7 +17,7 @@ class TradeArea{
         bool legal(Card*);
         Card* trade(std::string);
         int numCards();
-        friend std::ostream& operator<<( std::ostream &output, const TradeArea& tr_arr );
+        friend std::ostream& operator<<( std::ostream&, const TradeArea&  );
 
 };
 

@@ -52,7 +52,11 @@ int TradeArea::numCards(){ return tradeAr.size(); }
  * @param tr_arr 
  * @return std::ostream 
  */
-std::ostream operator<<(std::ostream& output, const TradeArea& tr_arr){
+std::ostream& operator<<(std::ostream& output, const TradeArea& tr_arr){
     // TO DO
+    for(auto card : tr_arr.tradeAr){
+        output << card->getName() << std::endl;
+    }
+
     return output;
 }

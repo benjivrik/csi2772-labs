@@ -71,7 +71,10 @@ int main(){
        else{ // proceed with the game
            for(int i = 0; i < MAX_NUM_PLAYER; i++){
                // proceed with the logic
+               std::cout << "Player " << i+1 << " turn. " << std::endl;
                Player* p = tb.getPlayer(i);  // get the current player
+
+               std::cout << "Table : " << std::endl << tb ;
            }
        }
        deck.draw(); // remove this line when the logic is implemented

@@ -12,11 +12,13 @@ class Hand{
     std::queue <Card*, std::list<Card*>> pHand; // player hand
     public:
         Hand(){};
+        Hand(std::istream&, const CardFactory*);
         Hand& operator+=(Card* card){
             pHand.push(card);
         };
         Card* play();
         Card* top();
+        Card* getCard(int pos);
         Card* operator[](int pos){
             Card* card = nullptr; // removed card to return
             std::queue <Card*, std::list<Card*>> temp; // temp player hand
@@ -47,8 +49,7 @@ class Hand{
             return card;  
         };
         int numCards();
-        // friend ostream& operator<<( ostream &output );
-        friend std::istream& operator>>( std::istream&, const CardFactory* );
+        friend std::ostream& operator<<( std::ostream&, const Hand& );
 
 };
 

@@ -11,7 +11,7 @@ class Table{
     Player* p2;
     int currentPlayer; // id of the current player
     DiscardPile* dp;
-    TradeArea* TradeAr;
+    TradeArea* tradeAr;
     Deck* deck;
     
     public:
@@ -19,14 +19,13 @@ class Table{
             p1 = &p_one;
             p2 = &p_two;
             dp = &d_pile;
-            TradeAr = &tr_arr;
+            tradeAr = &tr_arr;
             deck = &dck;
         }
         bool win(std::string&);
         void printHand(bool);
         Player* getPlayer(int);
-        friend std::ostream& operator<<( std::ostream&,  const Table& );
-        // friend std::istream& operator>>( std::istream &input, const CardFactory* );
+        friend std::ostream& operator<<(std::ostream&,  const Table&);
 
 };
 
