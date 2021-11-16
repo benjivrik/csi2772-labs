@@ -15,6 +15,7 @@ class Hand{
         Hand(std::istream&, const CardFactory*);
         Hand& operator+=(Card* card){
             pHand.push(card);
+            return *this;
         };
         Card* play();
         Card* top();
