@@ -1,4 +1,4 @@
-#include "Card.h"
+#include "headers/Card.h"
 using namespace std;
 
 // Card
@@ -440,4 +440,25 @@ int garden::getCardsPerCoin(int coins){
 
 void garden::print(std::ostream& out){
    out << this->getName()[0] ;
+}
+
+
+/**
+ * @brief 
+ * 
+ */
+std::ostream& operator << (std::ostream& out, Card& card) 
+{ 
+    card.print(out);
+    return out; 
+} 
+
+
+/**
+ * 
+ * @brief write the card inside a file
+ * 
+ */
+void Card::saveCard(std::ofstream& filename){
+    filename << *this;
 }

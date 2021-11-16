@@ -1,5 +1,5 @@
 
-#include "Main.h"
+#include "headers/Main.h"
 
 using namespace std;
 
@@ -50,6 +50,15 @@ int main(){
     DiscardPile dp;
     CardFactory* cf = CardFactory::getFactory();
     Deck deck = cf -> getDeck();
+
+    std::ofstream file_test_save;
+    file_test_save.open("Cards.txt");
+    for(int i=0; i < deck.size(); i++){
+        deck.at(i)->saveCard(file_test_save);
+        file_test_save << std::endl;
+    }
+    cout << "File saved." << std::endl;
+    file_test_save.close();
     TradeArea trAr;
     Table tb(p1,p2,dp,trAr,deck);
     char user_input[2];

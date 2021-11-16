@@ -1,5 +1,6 @@
 
 #include <algorithm>
+#include <random>
 
 #ifndef CARDFACTORY_H
 #define CARDFACTORY_H

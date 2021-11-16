@@ -13,6 +13,7 @@ class TradeArea{
         TradeArea(std::istream&, const CardFactory*){};
         TradeArea& operator+=(Card* card){
              tradeAr.push_back(card);
+             return *this;
         };
         bool legal(Card*);
         Card* trade(std::string);

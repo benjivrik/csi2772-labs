@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #ifndef CARD_H
 #define CARD_H
@@ -9,6 +10,7 @@ class Card{
     virtual std::string getName()=0;
     virtual void print(std::ostream& out)=0;
     virtual ~Card();
+    void saveCard(std::ofstream& filename);
 };
 
 class Blue : public virtual Card {

@@ -1,4 +1,4 @@
-#include "CardFactory.h"
+#include "headers/CardFactory.h"
 
 CardFactory* CardFactory::instance = 0; // initialize the instance to 0
 
