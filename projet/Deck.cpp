@@ -22,6 +22,7 @@ Deck& Deck::operator=(const Deck& d){
     for(int i = 0 ; i < d.size() && i < 104; i++){
         this->push_back(d[i]);
     }
+    return *this;
 }
 /**
  * @brief 
