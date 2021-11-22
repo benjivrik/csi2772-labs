@@ -39,6 +39,19 @@ ostream& operator<<( ostream& output, const Deck& d ){
     return output;
 }
 
+/**
+ * 
+ * @brief write the card inside a file
+ * 
+ */
+void Deck::saveDeck(std::ofstream& filename){
+    for(int i = 0;  i < this->size() ; i++){
+        this->at(i)->saveCard(filename);
+        filename << std::endl;
+    }
+    std::cout << "Deck saved." << std::endl;
+}
+
 
 
 

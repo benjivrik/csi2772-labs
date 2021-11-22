@@ -31,7 +31,7 @@ class Deck: public std::vector<Card*>{
         };
         Deck& operator=(const Deck&);
         friend std::ostream& operator<<( std::ostream &output, const Deck& d );
-  
+        void saveDeck(std::ofstream& filename);
 };
 
 #endif

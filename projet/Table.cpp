@@ -66,3 +66,26 @@ std::ostream& operator<<( std::ostream& output,  const Table&  tb){
 
         return output;
 };
+
+
+/**
+ * 
+ * @brief write the game into the related file
+ * 
+ */
+void Table::saveTable(){
+    
+    std::ofstream file;
+
+    file.open("Saved-Deck.txt");
+    deck->saveDeck(file);
+
+    file.close();
+
+    file.open("Saved-DiscardPile.txt");
+    file.close();
+
+    p1->savePlayer(1);
+    p2->savePlayer(2);
+
+}

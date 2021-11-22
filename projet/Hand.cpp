@@ -81,3 +81,34 @@ std::ostream& operator<<( std::ostream& output, Hand&  hand){
     return output;
 };
 
+
+/**
+ * 
+ * @brief write the card inside a file
+ * 
+ */
+void Hand::saveHand(std::ofstream& filename){
+
+    Card* card = nullptr; // removed card to return
+    std::queue <Card*, std::list<Card*>> temp; // temp player hand
+    Card* temp_card = nullptr;  // temp card
+    int find_idx = 0;
+    while(!pHand.empty()){
+        temp_card = pHand.front(); // get the card
+        temp_card -> saveCard(filename);
+        filename << std::endl;
+        pHand.pop();     // add it in the temporary queue
+        temp.push(temp_card); // add the card in the queue
+    }
+
+    // get the initial elements without the removed card inside pHand
+    while(!temp.empty()){
+        
+        temp_card = temp.front(); // get the card
+        temp.pop();     // add it in the temporary queue
+        pHand.push(temp_card); // add the card in the queue
+        
+    }
+
+    std::cout << "Hand saved." << std::endl;
+}

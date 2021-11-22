@@ -447,7 +447,7 @@ void garden::print(std::ostream& out){
  * @brief 
  * 
  */
-std::ostream& operator << (std::ostream& out, Card& card) 
+std::ostream& operator<<(std::ostream& out, Card& card) 
 { 
     card.print(out);
     return out; 

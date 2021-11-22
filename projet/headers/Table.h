@@ -26,6 +26,7 @@ class Table{
         void printHand(bool);
         Player* getPlayer(int);
         friend std::ostream& operator<<(std::ostream&,  const Table&);
+        void saveTable();
 
 };
 

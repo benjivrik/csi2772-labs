@@ -14,12 +14,16 @@ class Player{
     std::vector<Chain_Base*> pChains; // player chains
     int pCoins;  // number of coins held by the player
     const int MAX_NUM_CHAINS;
+    const int ALLOWED_CHAINS;
     public:
-        Player(std::string& name): MAX_NUM_CHAINS(3){
+        Player(std::string& name): MAX_NUM_CHAINS(3), ALLOWED_CHAINS(2){
             pName = name;
             pCoins = 0;
             pHand = new Hand();
 
+        };
+        Player(std::istream&, const CardFactory*): MAX_NUM_CHAINS(3), ALLOWED_CHAINS(2){
+            // TO DO
         };
         ~Player(){
             delete pHand;
@@ -54,6 +58,7 @@ class Player{
         };
         
         friend std::ostream& operator<<(std::ostream&,  const Player& );
+        void savePlayer(int p_id);
         
 };
 

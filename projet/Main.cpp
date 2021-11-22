@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 
-    // >>>>>>>  testing Deck <<<<<<<<<< //
+    // >>>>>>>>>>>  testing Deck <<<<<<<<<< //
     // unsigned seed = 0;
     // // srand(time(0));
     // // g++ .\Main.cpp .\Card.cpp .\Deck.cpp -std=c++11
@@ -51,16 +51,11 @@ int main(){
     CardFactory* cf = CardFactory::getFactory();
     Deck deck = cf -> getDeck();
 
-    std::ofstream file_test_save;
-    file_test_save.open("Cards.txt");
-    for(int i=0; i < deck.size(); i++){
-        deck.at(i)->saveCard(file_test_save);
-        file_test_save << std::endl;
-    }
-    cout << "File saved." << std::endl;
-    file_test_save.close();
     TradeArea trAr;
     Table tb(p1,p2,dp,trAr,deck);
+
+    tb.saveTable();
+
     char user_input[2];
 
     bool savedGame;
