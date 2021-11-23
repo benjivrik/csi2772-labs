@@ -77,12 +77,13 @@ void Table::saveTable(){
     
     std::ofstream file;
 
-    file.open("Saved-Deck.txt");
+    file.open("Saved-Deck.txt", std::ios::trunc);
     deck->saveDeck(file);
 
     file.close();
 
-    file.open("Saved-DiscardPile.txt");
+    file.open("Saved-DiscardPile.txt", std::ios::trunc);
+    dp->saveDiscardPile(file);
     file.close();
 
     p1->savePlayer(1);

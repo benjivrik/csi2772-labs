@@ -80,8 +80,7 @@ std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
  * @tparam T 
  * @param filename 
  */
-template <typename T> 
-void Chain<T>::saveChain(std::ofstream& filename){
+void Chain_Base::saveChain(std::ofstream& filename){
     filename << "T=" << chainType << std::endl;
     for(int i = 0; i < chain.size() ; i++){
         chain.at(i)->saveCard(filename);

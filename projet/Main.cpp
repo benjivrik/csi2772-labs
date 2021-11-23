@@ -1,5 +1,7 @@
 
 #include "headers/Main.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -49,10 +51,10 @@ int main(){
   
     DiscardPile dp;
     CardFactory* cf = CardFactory::getFactory();
-    Deck deck = cf -> getDeck();
+    Deck* deck =  cf -> getDeck();
 
     TradeArea trAr;
-    Table tb(p1,p2,dp,trAr,deck);
+    Table tb(p1,p2,dp,trAr, *deck);
 
     tb.saveTable();
 
@@ -61,16 +63,39 @@ int main(){
     bool savedGame;
   
     // load game from saved file here
-    cout << "Do you want to reload a game?" << endl;
+    std::cout << "Do you want to reload a game?(y/n)" << std::endl;
+    std::cin >> user_input;
     // search for file; if not found continue
+    if(user_input[0] == 'y'){
+        std::ifstream deckFile("Deck.txt");
+        if(deckFile.is_open()){
+            deck = new Deck(deckFile,cf);
+        }
+    }
+  
+    // std::string line;
+    // int count = 0;
+    // while (std::getline(deckFile, line))
+    // {
+    //     std::istringstream iss(line);
+    //     std::string data;
+    //     if (!(iss >> data)) { std::cout<< "Empty" <<std::endl; continue; } // error
+    //     std::cout << data << std::endl;
+    //     count++;
+
+    //     // process pair (a,b)
+    // }
 
     // proceed with the game loop
-    while(deck.size() != 0){
-       std::cout << "Number of card left in Deck : " << deck.size() << std::endl;
-       std::cout << "Do you want to pause the game ? (y/n)" << std::endl;
-       cin >> user_input;
+    while(deck->size() != 0){
+       std::cout << "Number of card left in Deck : " << deck->size() << std::endl;
+       std::cout << "Do you want to pause and save the game ? (y/n)" << std::endl;
+       std::cin >> user_input;
        if(user_input[0] == 'y'){
            // proceed with the logic for pausing the game
+           tb.saveTable();
+           std::cout << "Game saved. Bye." << std::endl;
+           break;
        }
        else{ // proceed with the game
            for(int i = 0; i < MAX_NUM_PLAYER; i++){
@@ -81,7 +106,7 @@ int main(){
                std::cout << "Table : " << std::endl << tb ;
            }
        }
-       deck.draw(); // remove this line when the logic is implemented
+       deck->draw(); // remove this line when the logic is implemented
     }
 
 

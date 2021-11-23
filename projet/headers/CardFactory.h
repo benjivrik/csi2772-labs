@@ -10,12 +10,12 @@
 
 class CardFactory{
     private:
-        Deck deck;
+        Deck* deck;
         CardFactory();
     public:
         static CardFactory* instance;
         static CardFactory* getFactory();
-        Deck getDeck();
+        Deck* getDeck();
 
 
 };

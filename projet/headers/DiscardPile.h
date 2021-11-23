@@ -21,6 +21,7 @@ class DiscardPile:  public std::vector<Card*>{
         Card* top();
         void print(std::ostream&);
         friend std::ostream& operator<<( std::ostream &output, const DiscardPile& dp );
+        void saveDiscardPile(std::ofstream& filename);
 
 };
 

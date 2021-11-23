@@ -49,3 +49,15 @@ std::ostream& operator<<( std::ostream &output, const DiscardPile& dp ){
     return output;
 }
 
+/**
+ * @brief 
+ * 
+ * @param filename 
+ */
+void DiscardPile::saveDiscardPile(std::ofstream& filename){
+    for(int i = 0;  i < this->size() ; i++){
+        this->at(i)->saveCard(filename);
+        filename << std::endl;
+    }
+    std::cout << "Discard Pile saved." << std::endl;
+}

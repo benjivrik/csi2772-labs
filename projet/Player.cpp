@@ -153,12 +153,17 @@ void Player::savePlayer(int p_id){
     sprintf(id, "%d", p_id);
     std::string filename ="Saved-P"+std::string(id)+"-Hand.txt";
 
-    file.open(filename);
+    file.open(filename, std::ios::trunc);
     pHand->saveHand(file);
 
     file.close();
 
-    file.open("Saved-P"+std::string(id)+"-Chains.txt");
+    file.open("Saved-P"+std::string(id)+"-Chains.txt", std::ios::trunc);
+    for(int i = 0 ; i < pChains.size() ; i++){
+        pChains.at(i)->saveChain(file);
+        file << std::endl << "-" << std::endl;
+    }
+    
     file.close();
 
     std::cout << "Player-"+std::string(id) << " saved. " << std::endl;

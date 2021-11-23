@@ -16,6 +16,7 @@ class Chain_Base{
         int sell(){ return -1;}; // unimplemented
         int getSize();
         std::string getChainType();
+        void saveChain(std::ofstream& filename);
   
 };
 
@@ -39,7 +40,7 @@ class Chain : public virtual Chain_Base{
         };
         int sell();
         friend std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d );
-        void saveChain(std::ofstream& filename);
+        
   
 };
 
