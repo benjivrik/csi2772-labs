@@ -86,7 +86,33 @@ void Table::saveTable(){
     dp->saveDiscardPile(file);
     file.close();
 
+    file.open("Saved-TradeArea.txt", std::ios::trunc);
+    tradeAr->saveTradeArea(file);
+    file.close();
+
     p1->savePlayer(1);
     p2->savePlayer(2);
 
+}
+
+/**
+ * @brief 
+ * 
+ */
+void Table::reloadPlayer(int p_id){
+    std::ifstream file;
+    char id[2];
+    sprintf(id, "%d", p_id);
+    std::string filename ="Saved-P"+std::string(id)+".txt";
+    file.open(filename);
+    if(file.is_open()){
+        if(p_id == 1){
+            p1 = new Player(file, cf);
+        }else{ // p_id should be equal to 2
+            p2 = new Player(file, cf);
+        }
+    }
+
+    file.close();
+    
 }

@@ -4,6 +4,8 @@
 
 #include <vector>
 #include <typeinfo>
+#include <sstream>
+#include <cstdlib>
 #include "Card.h"
 
 class CardFactory;
@@ -17,13 +19,19 @@ class Chain_Base{
         int getSize();
         std::string getChainType();
         void saveChain(std::ofstream& filename);
+        Chain_Base& operator+=(Card* card){
+            if(getSize() == 0)
+               chainType = typeid(card).name();// update the chain type
+
+            chain.push_back(card);
+            return *this;
+        };
   
 };
 
 // template <typename T = Card> class Chain : public virtual Chain_Base<T>{
 template <typename T = Card> 
 class Chain : public virtual Chain_Base{
-    // TO DO
     public:
         Chain(){ chainType = typeid(T).name();};
         Chain(std::istream&, const CardFactory*);
@@ -41,7 +49,6 @@ class Chain : public virtual Chain_Base{
         int sell();
         friend std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d );
         
-  
 };
 
 #endif

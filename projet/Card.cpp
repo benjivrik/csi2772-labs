@@ -379,26 +379,31 @@ int Red::getCardsPerCoin(int coins){
     return  numCards;
 }
 
-/**
- * 
- * add description here
- * 
- * */
 
+/**
+ * @brief 
+ * 
+ * @param out 
+ */
 void Red::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }
 
-// garden
+/**
+ * @brief Construct a new garden::garden object
+ * 
+ * @param name 
+ */
 garden::garden(std::string name){
     this->name = name;
 }
 
+
 /**
+ * @brief 
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string garden::getName(){
     return this->name;
 }

@@ -2,18 +2,33 @@
 
 CardFactory* CardFactory::instance = 0; // initialize the instance to 0
 
+/**
+ * @brief 
+ * 
+ * @return CardFactory* 
+ */
 CardFactory* CardFactory::getFactory(){
       if(!instance)
             instance = new CardFactory;
      return instance;
 }
 
+/**
+ * @brief 
+ * 
+ * @return Deck* 
+ */
 Deck* CardFactory::getDeck(){
     unsigned seed = 0;
     std::shuffle(deck->begin(), deck->end(), std::default_random_engine(seed)); // shuffle 
     return deck;
 }
 
+
+/**
+ * @brief Construct a new Card Factory:: Card Factory object
+ * 
+ */
 CardFactory::CardFactory(){
     // initialize the deck
     deck =  new Deck();

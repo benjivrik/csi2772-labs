@@ -11,6 +11,10 @@ class Card{
     virtual void print(std::ostream& out)=0;
     virtual ~Card();
     void saveCard(std::ofstream& filename);
+    std::ostream& operator<<(std::ostream& output){
+        output << getName()[0] << std::endl;
+        return output;
+    };
 };
 
 class Blue : public virtual Card {
@@ -20,10 +24,8 @@ class Blue : public virtual Card {
         int getCardsPerCoin(int coins);
         std::string getName();
         void print(std::ostream& out);
-    // TO DO
 };
 class Chili : public virtual Card {
-    // TO DO
     std::string name;
     public:
         Chili(std::string name = "Chili");
@@ -32,7 +34,6 @@ class Chili : public virtual Card {
         void print(std::ostream& out);
 };
 class Stink : public virtual Card {
-    // TO DO
     std::string name;
     public:
         Stink(std::string name = "Stink");
@@ -41,7 +42,6 @@ class Stink : public virtual Card {
         void print(std::ostream& out);
 };
 class Green : public virtual Card {
-    // TO DO
     std::string name;
     public:
         Green(std::string name = "Green");
@@ -50,7 +50,6 @@ class Green : public virtual Card {
         void print(std::ostream& out);
 };
 class soy : public virtual Card {
-    // TO DO
     std::string name;
     public:
         soy(std::string name="soy");
@@ -59,7 +58,6 @@ class soy : public virtual Card {
         void print(std::ostream& out);
 };
 class black : public virtual Card {
-    // TO DO
     std::string name;
     public:
         black(std::string name= "black");
@@ -69,7 +67,6 @@ class black : public virtual Card {
 };
 
 class Red : public virtual Card {
-    // TO DO
     std::string name;
     public:
         Red(std::string = "Red");
@@ -80,7 +77,6 @@ class Red : public virtual Card {
 
 
 class garden : public virtual Card {
-    // TO DO
     std::string name;
     public:
         garden(std::string = "garden");

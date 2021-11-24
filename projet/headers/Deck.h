@@ -26,7 +26,7 @@ class Deck: public std::vector<Card*>{
                 if (!(iss >> data)) { 
                     // std::cout<< "Empty" <<std::endl;
                     continue;
-                } // error
+                } 
                 // std::cout << data << std::endl; //debug purpose
                 count++;
                 if(data == "B")       card = new Blue;
@@ -38,7 +38,7 @@ class Deck: public std::vector<Card*>{
                 else if(data == "R")  card = new Red;
                 else if(data == "g")  card = new garden;
                 else {
-                    std::cout << "(playCard) Check the card name in the file. Value received : " << data << std::endl;
+                    std::cout << "(Deck Constructor) Check the card name in the file. Value received : " << data << std::endl;
                     exit(1);
                 }
                 //

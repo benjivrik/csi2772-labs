@@ -26,7 +26,37 @@ std::string Chain_Base::getChainType(){
  */
 template <typename T> 
 Chain<T>::Chain(std::istream& input, const CardFactory* cf){
-    // TO DO
+    std::string line;
+    Card* card = nullptr;
+    int count = 0;
+    while (std::getline(input, line))
+    {
+        std::istringstream iss(line);
+        std::string data;
+        if (!(iss >> data)) { 
+            // std::cout<< "Empty" <<std::endl;
+            continue;
+        } 
+        // std::cout << data << std::endl; //debug purpose
+        count++;
+        if(data == "B")       card = new Blue;
+        else if(data == "C")  card = new Chili;
+        else if(data == "S")  card = new Stink;
+        else if(data == "G")  card = new Green;
+        else if(data == "s")  card = new soy;
+        else if(data == "b")  card = new black;
+        else if(data == "R")  card = new Red;
+        else if(data == "g")  card = new garden;
+        else {
+            std::cout << "(Deck Constructor) Check the card name in the file. Value received : " << data << std::endl;
+            exit(1);
+        }
+        //
+        if(card != nullptr) (*this)+=card;
+
+    }
+
+    std::cout << "Deck with " << count << " cards initialized from file properly." <<std::endl;
 }
 
 /**
@@ -81,7 +111,7 @@ std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
  * @param filename 
  */
 void Chain_Base::saveChain(std::ofstream& filename){
-    filename << "T=" << chainType << std::endl;
+    filename << chainType << std::endl;
     for(int i = 0; i < chain.size() ; i++){
         chain.at(i)->saveCard(filename);
         filename << std::endl;

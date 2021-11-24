@@ -71,24 +71,29 @@ int Player::getNumChains(){
 void Player::buyThirdChain(){
     Card* card = nullptr;
     if(pCoins % 3 == 0){
-        pCoins -= 3;
-        card = pHand->top(); // should be play here...
-        Chain_Base* new_chain;
-        if(card->getName() == "Blue") new_chain = new Chain<Blue>;
-        else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
-        else if(card->getName() == "Stink") new_chain = new Chain<Stink>;
-        else if(card->getName() == "Green") new_chain = new Chain<Green>;
-        else if(card->getName() == "soy")   new_chain = new Chain<soy>;
-        else if(card->getName() == "black") new_chain = new Chain<black>;
-        else if(card->getName() == "Red")   new_chain = new Chain<Red>;
-        else if(card->getName() == "garden")new_chain = new Chain<garden>;
-        else {
-            std::cout << "(playCard) Check the card name. Value received : " << card->getName() << std::endl;
-            new_chain = nullptr; 
-            exit(1);
-            
+        if(pChains.size() < MAX_NUM_CHAINS){
+            pCoins -= 3;
+            card = pHand->top(); // should be play here...
+            Chain_Base* new_chain;
+            if(card->getName() == "Blue") new_chain = new Chain<Blue>;
+            else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
+            else if(card->getName() == "Stink") new_chain = new Chain<Stink>;
+            else if(card->getName() == "Green") new_chain = new Chain<Green>;
+            else if(card->getName() == "soy")   new_chain = new Chain<soy>;
+            else if(card->getName() == "black") new_chain = new Chain<black>;
+            else if(card->getName() == "Red")   new_chain = new Chain<Red>;
+            else if(card->getName() == "garden")new_chain = new Chain<garden>;
+            else {
+                std::cout << "(playCard) Check the card name. Value received : " << card->getName() << std::endl;
+                new_chain = nullptr; 
+                exit(1);
+                
+            }
+            pChains.push_back(new_chain);
+        }else{
+            std::cout << "A new chain can not be bought. The maximum number ["<< pChains.size() << "] of chains have been reached. " << std::endl;
         }
-        pChains.push_back(new_chain);
+        
     }else{
         throw "NotEnoughCoins";
     }
@@ -149,21 +154,28 @@ std::ostream& operator<<(std::ostream& output, const Player& player){
 void Player::savePlayer(int p_id){
     
     std::ofstream file;
+    // std::cout << "in" <<std::endl; // debug purpose
     char id[2];
     sprintf(id, "%d", p_id);
-    std::string filename ="Saved-P"+std::string(id)+"-Hand.txt";
+    std::string filename ="Saved-P"+std::string(id)+".txt";
 
     file.open(filename, std::ios::trunc);
+
+    // the first line should be the player name
+    file << pName << std::endl;
+
+    // save the hand
     pHand->saveHand(file);
 
-    file.close();
+    file << std::endl << "-chains" << std::endl;
 
-    file.open("Saved-P"+std::string(id)+"-Chains.txt", std::ios::trunc);
     for(int i = 0 ; i < pChains.size() ; i++){
+        file << std::endl << "---" << std::endl;
         pChains.at(i)->saveChain(file);
-        file << std::endl << "-" << std::endl;
     }
     
+    file << std::endl << "-end-chains" << std::endl;
+
     file.close();
 
     std::cout << "Player-"+std::string(id) << " saved. " << std::endl;

@@ -54,23 +54,30 @@ int main(){
     Deck* deck =  cf -> getDeck();
 
     TradeArea trAr;
-    Table tb(p1,p2,dp,trAr, *deck);
+    Table tb(p1,p2,dp,trAr, *deck, *cf);
 
     tb.saveTable();
 
     char user_input[2];
-
     bool savedGame;
-  
+
     // load game from saved file here
     std::cout << "Do you want to reload a game?(y/n)" << std::endl;
     std::cin >> user_input;
     // search for file; if not found continue
     if(user_input[0] == 'y'){
-        std::ifstream deckFile("Deck.txt");
+        std::ifstream deckFile("Saved-Deck.txt");
+        std::cout << "Deck file opened status : " << deckFile.is_open() << std::endl;
         if(deckFile.is_open()){
             deck = new Deck(deckFile,cf);
+        }else{
+            // file not found
+            std::cout << "Saved-Deck.txt not found. The deck has been generated from the CardFactory." << std::endl;
         }
+
+        tb.reloadPlayer(1); // get the player 1
+        tb.reloadPlayer(2); // get the player 2
+        
     }
   
     // std::string line;
