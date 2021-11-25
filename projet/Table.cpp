@@ -59,8 +59,8 @@ Player* Table::getPlayer(int id){
  */
 std::ostream& operator<<( std::ostream& output,  const Table&  tb){
 
-        output << "Player 1 :" << std::endl << *tb.p1 << std::endl;
-        output << "Player 2 :" << std::endl << *tb.p2 << std::endl;
+        output << "Player 1 :" << std::endl << *(tb.p1) << std::endl;
+        output << "Player 2 :" << std::endl << *(tb.p2) << std::endl;
         output << "Discard Pile :" << std::endl << *tb.dp << std::endl;
         output << "Trade Area :" << std::endl << *tb.tradeAr << std::endl;
 

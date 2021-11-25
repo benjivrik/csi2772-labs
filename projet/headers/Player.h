@@ -25,6 +25,7 @@ class Player{
             std::string line;
             std::string chainType;
             Card* card = nullptr;
+            pHand = new Hand();
             int  chain_idx = -1; // keep track of the idx of the chain being added from the text file
             int  count = 0; // number of cards received
             bool nameInitialized   = false;

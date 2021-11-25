@@ -34,29 +34,21 @@ int main(){
     std::string p2_name;
     std::string winner_name;
 
-    cout << "Enter the name of the first player : ";
-    cin  >> p1_name;
-    cout << std::endl;
-    cout << "Enter the name of the second player : ";
-    cin  >> p2_name;
-    cout << std::endl;
-
-    // initialize the component
+    // initialize the components
     const int MAX_NUM_PLAYER = 2;
-    Player p1(p1_name);
-    Player p2(p2_name);
-    // Player** pArr =  new Player*[MAX_NUM_PLAYER];
-    // pArr[0] = &p1;
-    // pArr[1] = &p2;
+    Player* p1 = nullptr;
+    Player* p2 = nullptr;
+    
+    // array of players
+    Player** pArr =  new Player*[MAX_NUM_PLAYER];
+    pArr[0] = p1;
+    pArr[1] = p2;
   
-    DiscardPile dp;
+    DiscardPile* dp = new DiscardPile;
     CardFactory* cf = CardFactory::getFactory();
     Deck* deck =  cf -> getDeck();
-
-    TradeArea trAr;
-    Table tb(p1,p2,dp,trAr, *deck, *cf);
-
-    tb.saveTable();
+    TradeArea* trAr = new TradeArea;
+    Table tb(*p1,*p2,*dp, *trAr, *deck, *cf);
 
     char user_input[2];
     bool savedGame;
@@ -77,22 +69,31 @@ int main(){
 
         tb.reloadPlayer(1); // get the player 1
         tb.reloadPlayer(2); // get the player 2
+
+        p1 = tb.getPlayer(1);
+        p2 = tb.getPlayer(2);
         
+    } else {
+        cout << std::endl;
+        cout << "Enter the name of the first player : ";
+        cin  >> p1_name;
+        cout << std::endl;
+        cout << "Enter the name of the second player : ";
+        cin  >> p2_name;
+        cout << std::endl;
+
+        p1 = new Player(p1_name);
+        p2 = new Player(p2_name);
+
+        std::cout << "Initializing  each player with 5 cards. " << std::endl;
+        // initialize 5 cards to hand of each player
+        for(int player = 0 ; player < MAX_NUM_PLAYER ; player++){
+            for(int card = 0; card < 5; card++){
+                pArr[player]->takeCard(deck->draw());
+            }
+        }
     }
   
-    // std::string line;
-    // int count = 0;
-    // while (std::getline(deckFile, line))
-    // {
-    //     std::istringstream iss(line);
-    //     std::string data;
-    //     if (!(iss >> data)) { std::cout<< "Empty" <<std::endl; continue; } // error
-    //     std::cout << data << std::endl;
-    //     count++;
-
-    //     // process pair (a,b)
-    // }
-
     // proceed with the game loop
     while(deck->size() != 0){
        std::cout << "Number of card left in Deck : " << deck->size() << std::endl;
@@ -107,7 +108,10 @@ int main(){
        else{ // proceed with the game
            for(int i = 0; i < MAX_NUM_PLAYER; i++){
                // proceed with the logic
+               std::cout << std::endl;
                std::cout << "Player " << i+1 << " turn. " << std::endl;
+               std::cout << std::endl;
+
                Player* p = tb.getPlayer(i);  // get the current player
 
                std::cout << "Table : " << std::endl << tb ;

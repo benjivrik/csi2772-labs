@@ -154,8 +154,8 @@ std::ostream& operator<<(std::ostream& output, const Player& player){
 void Player::savePlayer(int p_id){
     
     std::ofstream file;
-    // std::cout << "in" <<std::endl; // debug purpose
     char id[2];
+    
     sprintf(id, "%d", p_id);
     std::string filename ="Saved-P"+std::string(id)+".txt";
 

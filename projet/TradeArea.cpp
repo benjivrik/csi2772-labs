@@ -27,14 +27,14 @@ bool TradeArea::legal (Card* card){
  */
 Card* TradeArea::trade (std::string card){
 
-    Card* found;
+    Card* cardFound;
     std::list<Card*>::iterator i;
 
     for(i = tradeAr.begin(); i != tradeAr.end(); i++){
-        if( (*i)->getName() == card) found = *i;
+        if( (*i)->getName() == card) cardFound = *i;
     }
 
-    return found;
+    return cardFound;
 }
 
 /**

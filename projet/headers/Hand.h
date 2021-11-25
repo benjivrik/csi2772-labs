@@ -92,7 +92,7 @@ class Hand{
             return card;  
         };
         int numCards();
-        friend std::ostream& operator<<( std::ostream&, const Hand& );
+        friend std::ostream& operator<<( std::ostream&,  Hand& );
         void saveHand(std::ofstream& filename);
 
 };

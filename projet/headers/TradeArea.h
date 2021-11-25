@@ -47,7 +47,12 @@ class TradeArea{
             std::cout << "TradeArea with " << count << " cards initialized from file properly." <<std::endl;
         };
         TradeArea& operator+=(Card* card){
-             tradeAr.push_back(card);
+             if(this->legal(card)){
+                 tradeAr.push_back(card);
+             }else{
+                 std::cout<< "The card [" << card->getName() << "] can not be added to the Trade Area." << std::endl;
+             }
+             
              return *this;
         };
         bool legal(Card*);
