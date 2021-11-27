@@ -77,7 +77,7 @@ Card* Hand::getCard(int pos){
  * @return std::ostream& 
  */
 std::ostream& operator<<( std::ostream& output, Hand& hand){
-    std::cout << "called -->+++ " << std::endl;
+
     for( int pos = 0; pos < hand.numCards() ; pos++ ){
         output << hand.getCard(pos) << std::endl;
     }

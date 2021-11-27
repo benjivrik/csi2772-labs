@@ -93,8 +93,6 @@ int Chain<T>::sell(){
  * @return std::ostream& 
  */
 std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
-    std::cout << "Called" << std::endl;
-    std::cout << "Chain Type : " <<  d.chainType << std::endl << " ";
     // output << d.chain.at(0)->getName() << " ";
     for(int i = 0; i < d.chain.size(); i++){
         d.chain.at(i)->print(output);
@@ -129,8 +127,6 @@ void Chain_Base::saveChain(std::ofstream& filename){
  * @return std::ostream& 
  */
 std::ostream& operator<<( std::ostream &output, const Chain_Base & d ){
-    std::cout << "Called" << std::endl;
-    std::cout << "Chain Type : " <<  d.chainType << std::endl << " ";
     for(int i = 0; i < d.chain.size(); i++){
         d.chain.at(i)->print(output);
         output << " ";
