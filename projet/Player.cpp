@@ -136,10 +136,10 @@ int Player::getNumCoins(){
  * @return std::ostream 
  */
 std::ostream& operator<<(std::ostream& output, const Player& player){
-
-    output << player.pName << " " << player.pCoins << std::endl;
+    std::cout << "Called " << std::endl;
+    output << player.pName << " " << player.pCoins << " coins "<< std::endl;
     for(auto chain : player.pChains){
-        output << chain;
+        output << *chain;
         output << std::endl;
     }
 
@@ -163,6 +163,9 @@ void Player::savePlayer(int p_id){
 
     // the first line should be the player name
     file << pName << std::endl;
+
+    // the second line should be the coins of the player
+    file << pCoins << std::endl;
 
     // save the hand
     pHand->saveHand(file);

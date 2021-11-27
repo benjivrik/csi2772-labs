@@ -45,7 +45,7 @@ Card* Hand::getCard(int pos){
         int find_idx = 0;
         while(!pHand.empty()){
 
-            if(find_idx == pos){
+            if(find_idx++ == pos){
                 // get the element
                 card = pHand.front();
             }
@@ -72,9 +72,12 @@ Card* Hand::getCard(int pos){
 /**
  * @brief 
  * 
+ * @param output 
+ * @param hand 
+ * @return std::ostream& 
  */
-
 std::ostream& operator<<( std::ostream& output, Hand& hand){
+    std::cout << "called -->+++ " << std::endl;
     for( int pos = 0; pos < hand.numCards() ; pos++ ){
         output << hand.getCard(pos) << std::endl;
     }

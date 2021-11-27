@@ -29,6 +29,7 @@ class Player{
             int  chain_idx = -1; // keep track of the idx of the chain being added from the text file
             int  count = 0; // number of cards received
             bool nameInitialized   = false;
+            bool coinsInitialized  = false;
             bool handInitialized   = false;
             bool chainsInitialized = false;
             bool chainTypeInitialized = false;
@@ -41,10 +42,18 @@ class Player{
                     // std::cout<< "Empty" <<std::endl;
                     continue;
                 } 
-                // get the name on the first file
+                // get the name on the first line of the file
                 if(!nameInitialized) {
                     pName = data;
                     nameInitialized = true;
+                    continue;
+                }
+
+                // get the coins on the second line of the file
+                if(!coinsInitialized){
+                    const char *str_data =  &data[0];
+                    sscanf(str_data, "%d", &pCoins);
+                    coinsInitialized = true;
                     continue;
                 }
 
@@ -164,10 +173,10 @@ class Player{
         void buyThirdChain();
         void printHand(std::ostream& output, bool in){
             if(!in){
-                output << pHand->top()->getName() << std::endl;
+                output << pHand->top()->getName()[0] << std::endl;
             }else{
                 for(int i = 0; i < pHand->numCards(); i++){
-                    output << pHand->top()->getName() << " ";
+                    output << pHand->getCard(i)->getName()[0] << " ";
                 }
                 output << std::endl;
             }

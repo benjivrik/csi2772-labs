@@ -26,7 +26,7 @@ class Chain_Base{
             chain.push_back(card);
             return *this;
         };
-  
+        friend std::ostream& operator<<( std::ostream &output, const Chain_Base & d );
 };
 
 // template <typename T = Card> class Chain : public virtual Chain_Base<T>{

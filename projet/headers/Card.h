@@ -12,6 +12,7 @@ class Card{
     virtual ~Card();
     void saveCard(std::ofstream& filename);
     std::ostream& operator<<(std::ostream& output){
+        std::cout << "called --> " << std::endl;
         output << getName()[0] << std::endl;
         return output;
     };

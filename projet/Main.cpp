@@ -107,6 +107,10 @@ int main(){
        }
        else{ // proceed with the game
            for(int i = 0; i < MAX_NUM_PLAYER; i++){
+
+               // display table
+               std::cout << "Table : " << std::endl << tb << std::endl;
+
                // proceed with the logic
                std::cout << std::endl;
                std::cout << "Player " << i+1 << " turn. " << std::endl;
@@ -114,7 +118,23 @@ int main(){
 
                Player* p = tb.getPlayer(i);  // get the current player
 
-               std::cout << "Table : " << std::endl << tb ;
+               // Play topmost card from Hand.
+               p->takeCard(deck->draw());
+
+               // 
+               if(trAr->numCards() > 0) {
+                   // do something here
+               }else{
+                   // do something here
+               }
+
+               // Play topmost card from Hand.
+               std::cout << "Player " << i+1 << " Hand: " << std::endl;
+               p->playCard();
+               p->printHand(std::cout, true);
+               p->printHand(std::cout, false);
+
+          
            }
        }
        deck->draw(); // remove this line when the logic is implemented

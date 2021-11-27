@@ -31,7 +31,12 @@ Card* TradeArea::trade (std::string card){
     std::list<Card*>::iterator i;
 
     for(i = tradeAr.begin(); i != tradeAr.end(); i++){
-        if( (*i)->getName() == card) cardFound = *i;
+        if( (*i)->getName() == card){
+            cardFound = *i;
+            tradeAr.erase(i); // delete the card found
+            break;
+        } 
+        
     }
 
     return cardFound;
