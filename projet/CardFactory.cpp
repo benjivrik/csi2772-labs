@@ -3,7 +3,7 @@
 CardFactory* CardFactory::instance = 0; // initialize the instance to 0
 
 /**
- * @brief 
+ * @brief creer une instance du card factory en suivant le pattern singleton
  * 
  * @return CardFactory* 
  */
@@ -14,7 +14,7 @@ CardFactory* CardFactory::getFactory(){
 }
 
 /**
- * @brief 
+ * @brief retourne le deck du jeu
  * 
  * @return Deck* 
  */

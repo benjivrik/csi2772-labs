@@ -1,7 +1,7 @@
 #include "headers/Chain.h"
 
 /**
- * @brief 
+ * @brief retourne le nombre de cartes dans le deck
  * 
  * @return int 
  */
@@ -48,7 +48,7 @@ Chain<T>::Chain(std::istream& input, const CardFactory* cf){
         else if(data == "R")  card = new Red;
         else if(data == "g")  card = new garden;
         else {
-            std::cout << "(Deck Constructor) Check the card name in the file. Value received : " << data << std::endl;
+            std::cout << "(Chain Constructor) Check the card name in the file. Value received : " << data << std::endl;
             exit(1);
         }
         //
@@ -56,11 +56,12 @@ Chain<T>::Chain(std::istream& input, const CardFactory* cf){
 
     }
 
-    std::cout << "Deck with " << count << " cards initialized from file properly." <<std::endl;
+    std::cout << "Chain with " << count << " cards initialized from file properly." <<std::endl;
 }
 
 /**
- * @brief // add description here
+ * @brief  counts the number cards in the current chain and returns the number coins 
+according to the function Card::getCardsPerCoin
  * 
  * @tparam T 
  * @return int 
@@ -86,7 +87,7 @@ int Chain<T>::sell(){
 }
 
 /**
- * @brief 
+ * @brief insertion operator to display the chain information
  * 
  * @param output 
  * @param d 
@@ -104,13 +105,14 @@ std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
 
 
 /**
- * @brief 
+ * @brief write chain inside a file
  * 
  * @tparam T 
  * @param filename 
  */
 void Chain_Base::saveChain(std::ofstream& filename){
-    filename << chainType << std::endl;
+    // std::cout << "Chain Type (Chain)" <<  chainType << std::endl; // Debug purpose
+    filename << std::endl << chainType << std::endl;
     for(int i = 0; i < chain.size() ; i++){
         chain.at(i)->saveCard(filename);
         filename << std::endl;
@@ -120,7 +122,7 @@ void Chain_Base::saveChain(std::ofstream& filename){
 }
 
 /**
- * @brief 
+ * @brief insertion operator display the chain_base information
  * 
  * @param output 
  * @param d 

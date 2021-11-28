@@ -41,14 +41,13 @@ int main(){
     
     // array of players
     Player** pArr =  new Player*[MAX_NUM_PLAYER];
-    pArr[0] = p1;
-    pArr[1] = p2;
   
     DiscardPile* dp = new DiscardPile;
     CardFactory* cf = CardFactory::getFactory();
     Deck* deck =  cf -> getDeck();
     TradeArea* trAr = new TradeArea;
-    Table tb(*p1,*p2,*dp, *trAr, *deck, *cf);
+    Table* tb = new Table(*p1,*p2,*dp, *trAr, *deck, *cf);
+    // Table tb(*p1,*p2,*dp, *trAr, *deck, *cf);
 
     char user_input[2];
     bool savedGame;
@@ -67,11 +66,13 @@ int main(){
             std::cout << "Saved-Deck.txt not found. The deck has been generated from the CardFactory." << std::endl;
         }
 
-        tb.reloadPlayer(1); // get the player 1
-        tb.reloadPlayer(2); // get the player 2
+        tb -> reloadPlayer(1); // get the player 1
+        tb -> reloadPlayer(2); // get the player 2
 
-        p1 = tb.getPlayer(1);
-        p2 = tb.getPlayer(2);
+        p1 = tb -> getPlayer(1);
+        p2 = tb -> getPlayer(2);
+
+        
         
     } else {
         cout << std::endl;
@@ -85,7 +86,13 @@ int main(){
         p1 = new Player(p1_name);
         p2 = new Player(p2_name);
 
+        pArr[0] = p1;
+        pArr[1] = p2;
+
+        tb = new Table(*p1,*p2,*dp, *trAr, *deck, *cf);
+
         std::cout << "Initializing  each player with 5 cards. " << std::endl;
+        std::cout << "Current size of the deck : " << deck -> size() << std::endl;
         // initialize 5 cards to hand of each player
         for(int player = 0 ; player < MAX_NUM_PLAYER ; player++){
             for(int card = 0; card < 5; card++){
@@ -101,7 +108,7 @@ int main(){
        std::cin >> user_input;
        if(user_input[0] == 'y'){
            // proceed with the logic for pausing the game
-           tb.saveTable();
+           tb -> saveTable();
            std::cout << "Game saved. Bye." << std::endl;
            break;
        }
@@ -116,7 +123,7 @@ int main(){
                std::cout << "Player " << i+1 << " turn. " << std::endl;
                std::cout << std::endl;
 
-               Player* p = tb.getPlayer(i);  // get the current player
+               Player* p = tb -> getPlayer(i);  // get the current player
 
                // Play topmost card from Hand.
                p->takeCard(deck->draw());

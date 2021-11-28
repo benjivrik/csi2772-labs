@@ -166,13 +166,16 @@ void Player::savePlayer(int p_id){
     // the second line should be the coins of the player
     file << pCoins << std::endl;
 
+  
     // save the hand
     pHand->saveHand(file);
+
 
     file << std::endl << "-chains" << std::endl;
 
     for(int i = 0 ; i < pChains.size() ; i++){
         file << std::endl << "---" << std::endl;
+        std::cout << "Chain Type (Player):" << pChains.at(i)->getChainType() << std::endl;
         pChains.at(i)->saveChain(file);
     }
     

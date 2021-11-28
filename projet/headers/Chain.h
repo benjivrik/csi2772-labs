@@ -23,6 +23,7 @@ class Chain_Base{
             if(getSize() == 0)
                chainType = typeid(card).name();// update the chain type
 
+            // std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
             chain.push_back(card);
             return *this;
         };
@@ -33,13 +34,18 @@ class Chain_Base{
 template <typename T = Card> 
 class Chain : public virtual Chain_Base{
     public:
-        Chain(){ chainType = typeid(T).name();};
+        Chain(){ 
+            chainType = typeid(T).name();
+            // std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
+        };
         Chain(std::istream&, const CardFactory*);
+        // add the card to the chain using the operator+=
         Chain<T>& operator+=(Card* card){
 
             if(getSize() == 0)
                chainType = typeid(card).name();// update the chain type
 
+            // std::cout << "(Chain.h) chainType : " << chainType << std::endl; // debug purpose
             if(typeid(T) == typeid(card) ){
                 chain.push_back(card);
                 return *this;

@@ -2,7 +2,7 @@
 using namespace std;
 
 /**
- * @brief 
+ * @brief returns and removes the top card from the deck
  * 
  * @return Card* 
  */
@@ -13,7 +13,7 @@ Card* Deck::draw(){
 }
 
 /**
- * @brief 
+ * @brief assignment operator for the class Deck
  * 
  * @param d 
  * @return Deck& 
@@ -25,7 +25,7 @@ Deck& Deck::operator=(const Deck& d){
     return *this;
 }
 /**
- * @brief 
+ * @brief insertion operator to display the deck object
  * 
  * @param output 
  * @param d 
@@ -40,10 +40,11 @@ ostream& operator<<( ostream& output, const Deck& d ){
     return output;
 }
 
+
 /**
+ * @brief write the deck inside a file
  * 
- * @brief write the card inside a file
- * 
+ * @param filename 
  */
 void Deck::saveDeck(std::ofstream& filename){
     for(int i = 0;  i < this->size() ; i++){

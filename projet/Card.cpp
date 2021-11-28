@@ -18,7 +18,7 @@ Blue::Blue(std::string name){
     this->name = name;
 }
 /**
- * @brief 
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
  * @param coins 
  * @return int 
@@ -48,7 +48,7 @@ int Blue::getCardsPerCoin(int coins){
 }
 
 /**
- * @brief 
+ * @brief retourne le nom de la carte
  * 
  * @return string 
  */
@@ -57,7 +57,7 @@ string Blue::getName(){
 }
 
 /**
- * @brief 
+ * @brief display the first letter of the card name
  * 
  * @param out 
  */
@@ -74,8 +74,9 @@ Chili::Chili(std::string name){
     this->name = name;
 }
 
+
 /**
- * @brief 
+ * @brief retourne le nom de la carte
  * 
  * @return string 
  */
@@ -84,7 +85,7 @@ string Chili::getName(){
 }
 
 /**
- * @brief 
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
  * @param coins 
  * @return int 
@@ -114,7 +115,7 @@ int Chili::getCardsPerCoin(int coins){
 }
 
 /**
- * @brief 
+ * @brief display the first letter of the card name
  * 
  * @param out 
  */
@@ -131,8 +132,9 @@ Stink::Stink(std::string name){
     this->name = name;
 }
 
+
 /**
- * @brief 
+ * @brief retourne le nom de la carte
  * 
  * @return string 
  */
@@ -142,7 +144,7 @@ string Stink::getName(){
 
 
 /**
- * @brief 
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
  * @param coins 
  * @return int 
@@ -173,7 +175,7 @@ int Stink::getCardsPerCoin(int coins){
 
 
 /**
- * @brief 
+ * @brief display the first letter of the card name
  * 
  * @param out 
  */
@@ -182,22 +184,31 @@ void Stink::print(std::ostream& out){
 }
 
 // Green
+/**
+ * @brief Construct a new Green:: Green object
+ * 
+ * @param name 
+ */
 Green::Green(std::string name){
     this->name = name;
 }
+
+
 /**
+ * @brief retourne le nom de la carte
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string Green::getName(){
     return this->name;
 }
+
 /**
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int Green::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -221,35 +232,42 @@ int Green::getCardsPerCoin(int coins){
 
     return  numCards;
 }
-/**
- * 
- * add description here
- * 
- * */
 
+/**
+ * @brief display the first letter of the card name
+ * 
+ * @param out 
+ */
 void Green::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }
 
 // soy
+/**
+ * @brief Construct a new soy::soy object
+ * 
+ * @param name 
+ */
 soy::soy(std::string name){
     this->name = name;
 }
 
+
 /**
+ * @brief retourne le nom de la carte
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string soy::getName(){
     return this->name;
 }
 
 /**
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int soy::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -273,35 +291,42 @@ int soy::getCardsPerCoin(int coins){
 
     return  numCards;
 }
-/**
- * 
- * add description here
- * 
- * */
 
+/**
+ * @brief display the first letter of the card name
+ * 
+ * @param out 
+ */
 void soy::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }
 
 // black
+/**
+ * @brief Construct a new black::black object
+ * 
+ * @param name 
+ */
 black::black(std::string name){
     this->name = name;
 }
 
+
 /**
+ * @brief retourne le nom de la carte
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string black::getName(){
     return this->name;
 }
 
 /**
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int black::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid 
     switch (coins)
@@ -327,34 +352,40 @@ int black::getCardsPerCoin(int coins){
 }
 
 /**
+ * @brief display the first letter of the card name
  * 
- * add description here
- * 
- * */
-
+ * @param out 
+ */
 void black::print(std::ostream& out){
     out << this->getName()[0] << std::endl;
 }
 
 // Red
+/**
+ * @brief Construct a new Red:: Red object
+ * 
+ * @param name 
+ */
 Red::Red(std::string name){
     this->name = name;
 }
 
+
 /**
+ * @brief retourne le nom de la carte
  * 
- * add description here
- * 
- * */
+ * @return string 
+ */
 string Red::getName(){
     return this->name;
 }
 
 /**
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int Red::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -381,7 +412,7 @@ int Red::getCardsPerCoin(int coins){
 
 
 /**
- * @brief 
+ * @brief display the first letter of the card name
  * 
  * @param out 
  */
@@ -399,8 +430,9 @@ garden::garden(std::string name){
 }
 
 
+
 /**
- * @brief 
+ * @brief retourne le nom de la carte
  * 
  * @return string 
  */
@@ -409,10 +441,11 @@ string garden::getName(){
 }
 
 /**
+ * @brief retourne le nombre de cartes qui correspond au nombre de piece
  * 
- * add description here
- * 
- * */
+ * @param coins 
+ * @return int 
+ */
 int garden::getCardsPerCoin(int coins){
     int numCards = -1; // default to -1 : invalid
     switch (coins)
@@ -438,19 +471,20 @@ int garden::getCardsPerCoin(int coins){
 }
 
 /**
+ * @brief display the first letter of the card name
  * 
- * add description here
- * 
- * */
-
+ * @param out 
+ */
 void garden::print(std::ostream& out){
    out << this->getName()[0] ;
 }
 
-
 /**
- * @brief 
+ * @brief insertion operator to display the card object
  * 
+ * @param out 
+ * @param card 
+ * @return std::ostream& 
  */
 std::ostream& operator<<(std::ostream& out, Card& card) 
 { 
@@ -460,9 +494,9 @@ std::ostream& operator<<(std::ostream& out, Card& card)
 
 
 /**
- * 
  * @brief write the card inside a file
  * 
+ * @param filename 
  */
 void Card::saveCard(std::ofstream& filename){
     filename << *this;
