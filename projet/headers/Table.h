@@ -34,6 +34,7 @@ class Table{
             tradeAr = &tr_arr;
             deck = &dck;
             cf = &cfactory;
+            deck = cf ->getDeck();
         }
 
         /**
@@ -54,6 +55,8 @@ class Table{
         friend std::ostream& operator<<(std::ostream&,  const Table&);
         void saveTable();
         void reloadPlayer(int);
+        void reloadDeck();
+        Deck* getDeck();
 
 };
 

@@ -98,6 +98,7 @@ void Player::buyThirdChain(){
                 exit(1);
                 
             }
+            *new_chain += card;
             pChains.push_back(new_chain);
         }else{
             std::cout << "A new chain can not be bought. The maximum number ["<< pChains.size() << "] of chains have been reached. " << std::endl;
@@ -186,7 +187,6 @@ void Player::savePlayer(int p_id){
 
     for(int i = 0 ; i < pChains.size() ; i++){
         file << std::endl << "---" << std::endl;
-        std::cout << "Chain Type (Player):" << pChains.at(i)->getChainType() << std::endl;
         pChains.at(i)->saveChain(file);
     }
     

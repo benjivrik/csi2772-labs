@@ -99,7 +99,7 @@ void Table::saveTable(){
 
 
 /**
- * @brief permet de recuperer l'information dans le fichier correspondant à l'idée du joueur correspondant
+ * @brief permet de recuperer l'information dans le fichier correspondant à l'id du joueur correspondant
  * 
  * @param p_id 
  */
@@ -119,4 +119,29 @@ void Table::reloadPlayer(int p_id){
 
     file.close();
     
+}
+
+/**
+ * @brief permet de recuperer le deck sauvegardé dans un fichier
+ * 
+ * 
+ */
+void Table::reloadDeck(){
+    std::ifstream deckFile("Saved-Deck.txt"); // add this in table ?
+    if(deckFile.is_open()){
+        deck = new Deck(deckFile,cf);
+    }else{
+        // file not found
+        deck =  cf -> getDeck();
+        std::cout << "Saved-Deck.txt not found. The deck has been generated from the CardFactory." << std::endl;
+    }
+}
+
+/**
+ * @brief returns the deck initialized in the table object
+ * 
+ * @return Deck* 
+ */
+Deck* Table::getDeck(){
+    return deck;
 }

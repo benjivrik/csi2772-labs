@@ -87,24 +87,6 @@ int Chain<T>::sell(){
 }
 
 /**
- * @brief insertion operator to display the chain information
- * 
- * @param output 
- * @param d 
- * @return std::ostream& 
- */
-std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
-    // output << d.chain.at(0)->getName() << " ";
-    for(int i = 0; i < d.chain.size(); i++){
-        d.chain.at(i)->print(output);
-        output << " ";
-    }
-    
-    return output;
-};
-
-
-/**
  * @brief write chain inside a file
  * 
  * @tparam T 
@@ -122,6 +104,26 @@ void Chain_Base::saveChain(std::ofstream& filename){
 }
 
 /**
+ * @brief insertion operator to display the chain information
+ * 
+ * @param output 
+ * @param d 
+ * @return std::ostream& 
+ */
+std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
+    output << d.chainType << " ";
+    for(int i = 0; i < d.chain.size(); i++){
+        d.chain.at(i)->print(output);
+        output << " ";
+    }
+    
+    return output;
+};
+
+
+
+
+/**
  * @brief insertion operator display the chain_base information
  * 
  * @param output 
@@ -129,6 +131,7 @@ void Chain_Base::saveChain(std::ofstream& filename){
  * @return std::ostream& 
  */
 std::ostream& operator<<( std::ostream &output, const Chain_Base & d ){
+    output << d.chainType << " ";
     for(int i = 0; i < d.chain.size(); i++){
         d.chain.at(i)->print(output);
         output << " ";
