@@ -5,6 +5,7 @@
 #include "Deck.h"
 #include "DiscardPile.h"
 #include "TradeArea.h"
+#include  "CardFactory.h"
 
 class Table{
     Player* p1;
@@ -16,6 +17,16 @@ class Table{
     CardFactory* cf;
     
     public:
+        /**
+         * @brief Construct a new Table object
+         * 
+         * @param p_one 
+         * @param p_two 
+         * @param d_pile 
+         * @param tr_arr 
+         * @param dck 
+         * @param cfactory 
+         */
         Table(Player& p_one, Player& p_two, DiscardPile& d_pile, TradeArea& tr_arr, Deck& dck, CardFactory& cfactory){
             p1 = &p_one;
             p2 = &p_two;
@@ -23,6 +34,19 @@ class Table{
             tradeAr = &tr_arr;
             deck = &dck;
             cf = &cfactory;
+        }
+
+        /**
+         * @brief Destroy the Table object
+         * 
+         */
+        ~Table(){
+            delete p1;
+            delete p2;
+            delete dp;
+            delete tradeAr;
+            delete deck;
+            delete cf;
         }
         bool win(std::string&);
         void printHand(bool);

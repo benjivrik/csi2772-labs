@@ -16,11 +16,22 @@ class Player{
     const int MAX_NUM_CHAINS;
     const int ALLOWED_CHAINS;
     public:
+        /**
+         * @brief Construct a new Player object
+         * 
+         * @param name 
+         */
         Player(std::string& name): MAX_NUM_CHAINS(3), ALLOWED_CHAINS(2){
             pName = name;
             pCoins = 0;
             pHand = new Hand();
         };
+        /**
+         * @brief Construct a new Player object from an istream
+         * 
+         * @param input 
+         * @param cf 
+         */
         Player(std::istream& input, const CardFactory* cf): MAX_NUM_CHAINS(3), ALLOWED_CHAINS(2){
             std::string line;
             std::string chainType;
@@ -151,14 +162,32 @@ class Player{
 
             std::cout << "Player initialized from file properly." <<std::endl;
         };
+        
+        /**
+         * @brief Destroy the Player object
+         * 
+         */
         ~Player(){
             delete pHand;
         };
+
+        /**
+         * @brief permet d'augmenter le nombre de point du joueur
+         * 
+         * @param coins 
+         * @return Player& 
+         */
         Player& operator+=(int coins){
             pCoins += coins;
             return *this;
         };
 
+        /**
+         * @brief retourne la chaine à l'index i correspondant
+         * 
+         * @param i 
+         * @return Chain_Base& 
+         */
         Chain_Base& operator[](int i){
             return *(pChains.at(i));
         };
@@ -172,6 +201,13 @@ class Player{
         int getMaxNumChains();
         int getNumChains();
         void buyThirdChain();
+
+        /**
+         * @brief  prints the top card of the player's hand (with in == false) or all of the player's hand (with ain == true) to the supplied ostream
+         * 
+         * @param output 
+         * @param in 
+         */
         void printHand(std::ostream& output, bool in){
             if(!in){
                 output << pHand->top()->getName()[0] << std::endl;

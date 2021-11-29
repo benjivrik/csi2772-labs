@@ -34,12 +34,21 @@ class Chain_Base{
 template <typename T = Card> 
 class Chain : public virtual Chain_Base{
     public:
+        /**
+         * @brief Construct a new Chain object
+         * 
+         */
         Chain(){ 
             chainType = typeid(T).name();
             // std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
         };
         Chain(std::istream&, const CardFactory*);
-        // add the card to the chain using the operator+=
+        /**
+         * @brief add the card to the chain using the operator+=
+         * 
+         * @param card 
+         * @return Chain<T>& 
+         */
         Chain<T>& operator+=(Card* card){
 
             if(getSize() == 0)

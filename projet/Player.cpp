@@ -10,13 +10,18 @@ std::string Player::getName(){
     return this->pName;
 }
 
+/**
+ * @brief creates the chain when the card is played and returns that card
+ * 
+ * @return Card* 
+ */
 Card* Player::playCard(){
     Card* card = nullptr;
     if (pHand->numCards() < 0)
         std::cout << "(PlayCard) Not enough card in hand for player : " << pName << std::endl;
     else{
         if(pChains.size() <= ALLOWED_CHAINS){
-            card = pHand->top(); // should be play here...
+            card = pHand->play(); // should be play here...
             Chain_Base* new_chain;
             if(card->getName() == "Blue") new_chain = new Chain<Blue>;
             else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
@@ -41,8 +46,9 @@ Card* Player::playCard(){
     }
     return card; 
 }
+
 /**
- * @brief 
+ * @brief retourne le nombre maximal de chaine autorisé dans le jeu pour le joueur correspondant
  * 
  * @return int 
  */
@@ -52,7 +58,7 @@ int Player::getMaxNumChains(){
 
 
 /**
- * @brief 
+ * @brief retourne le nombre de chaine non nul que le joueur possède 
  * 
  * @return int 
  */
@@ -64,8 +70,11 @@ int Player::getNumChains(){
     return counter;
 }
 
+
 /**
- * @brief 
+ * @brief  adds an empty third chain to the player for three coins. The 
+functions reduces the coin count for the player by two. If the player does not have enough coins 
+then an exception NotEnoughCoins is thrown
  * 
  */
 void Player::buyThirdChain(){
@@ -73,7 +82,7 @@ void Player::buyThirdChain(){
     if(pCoins % 3 == 0){
         if(pChains.size() < MAX_NUM_CHAINS){
             pCoins -= 3;
-            card = pHand->top(); // should be play here...
+            card = pHand->top();
             Chain_Base* new_chain;
             if(card->getName() == "Blue") new_chain = new Chain<Blue>;
             else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
@@ -101,25 +110,26 @@ void Player::buyThirdChain(){
 
 
 /**
- * @brief 
+ * @brief permet d'ajouter une carte à la main du joueur
  * 
+ * @param card 
  */
-
 void Player::takeCard(Card* card){
     *pHand += card;  // add the card in the player hand
 }
 
 
 /**
- * @brief 
+ * @brief remove the top card of the hand of the player and return the corresponding card
  * 
+ * @return Card* 
  */
 Card* Player::removeCard(){
     return pHand->play();
 }
 
 /**
- * @brief 
+ * @brief returns the number of coins that the player has
  * 
  * @return int 
  */
@@ -129,7 +139,7 @@ int Player::getNumCoins(){
 
 
 /**
- * @brief 
+ * @brief insertion operator to display the player object
  * 
  * @param output 
  * @param player 
@@ -145,10 +155,11 @@ std::ostream& operator<<(std::ostream& output, const Player& player){
     return output;
 }
 
+
 /**
+ * @brief write the player information inside a text file
  * 
- * @brief write the card inside a file
- * 
+ * @param p_id is the player id during the game
  */
 void Player::savePlayer(int p_id){
     

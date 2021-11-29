@@ -14,7 +14,17 @@ class CardFactory;
 
 class Deck: public std::vector<Card*>{
      public :
+        /**
+         * @brief Construct a new Deck object
+         * 
+         */
         Deck(): std::vector<Card*>(){};
+        /**
+         * @brief Construct a new Deck object from an istream
+         * 
+         * @param input 
+         * @param cf 
+         */
         Deck(std::istream& input, const CardFactory* cf): std::vector<Card*>(){
             std::string line;
             Card* card = nullptr;
@@ -49,6 +59,11 @@ class Deck: public std::vector<Card*>{
             std::cout << "Deck with " << count << " cards initialized from file properly." <<std::endl;
 
         };
+        /**
+         * @brief Construct a new Deck object; copy constructor
+         * 
+         * @param d 
+         */
         Deck(const Deck& d){
             // clear the item from the current deck
             this->clear(); 
@@ -58,7 +73,11 @@ class Deck: public std::vector<Card*>{
             }
             std::cout << "Deck of size("<<d.size()<<") copied."<<std::endl;
         }
-        Card* draw();
+           
+        /**
+         * @brief Destroy the Deck object
+         * 
+         */
         ~Deck(){
             for(int i = 0; i < this->size(); i++){
                 // std::cout << "deleting i = " << i << "; name = " << this->at(i)->getName() << std::endl; // DEBUG PURPOSE
@@ -66,6 +85,8 @@ class Deck: public std::vector<Card*>{
             }
             std::cout << "Deck of size("<<this->size()<<") destroyed."<<std::endl;
         };
+
+        Card* draw();
         Deck& operator=(const Deck&);
         friend std::ostream& operator<<( std::ostream &output, const Deck& d );
         void saveDeck(std::ofstream& filename);

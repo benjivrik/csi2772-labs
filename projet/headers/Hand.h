@@ -20,7 +20,17 @@ class Hand{
             }
         }
     public:
+        /**
+         * @brief Construct a new Hand object
+         * 
+         */
         Hand(){};
+        /**
+         * @brief Construct a new Hand object from an istream
+         * 
+         * @param input 
+         * @param cf 
+         */
         Hand(std::istream& input, const CardFactory* cf){
             std::string line;
             Card* card = nullptr;
@@ -55,6 +65,12 @@ class Hand{
             std::cout << "Hand with " << count << " cards initialized from file properly." <<std::endl;
 
         };
+        /**
+         * @brief add the card inside the hand of the player
+         * 
+         * @param card 
+         * @return Hand& 
+         */
         Hand& operator+=(Card* card){
             pHand.push(card);
             return *this;
@@ -62,6 +78,12 @@ class Hand{
         Card* play();
         Card* top();
         Card* getCard(int pos);
+        /**
+         * @brief  returns and removes the Card at a given index
+         * 
+         * @param pos 
+         * @return Card* 
+         */
         Card* operator[](int pos){
             Card* card = nullptr; // removed card to return
             std::queue <Card*, std::list<Card*>> temp; // temp player hand

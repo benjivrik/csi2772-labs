@@ -1,7 +1,7 @@
 #include "headers/Hand.h"
 
 /**
- * @brief 
+ * @brief returns and removes the top card from the player's hand.
  * 
  * @return Card* 
  */
@@ -12,7 +12,7 @@ Card* Hand::play(){
 }
 
 /**
- * @brief 
+ * @brief retourne la carte qui se trouve au sommet de la pile de la main (Hand)
  * 
  * @return Card* 
  */
@@ -21,7 +21,7 @@ Card* Hand::top(){
 }
 
 /**
- * @brief 
+ * @brief retourne le nombre de cartes contenues dans la main (Hand)
  * 
  * @return int 
  */
@@ -30,7 +30,7 @@ int Hand::numCards(){
 }
 
 /**
- * @brief 
+ * @brief retourne la carte à l'index spécifié par le paramètre pos
  * 
  * @param pos 
  * @return Card* 
@@ -70,7 +70,7 @@ Card* Hand::getCard(int pos){
 }
 
 /**
- * @brief 
+ * @brief insertion operator to display the content of the Hand object
  * 
  * @param output 
  * @param hand 

@@ -1,7 +1,8 @@
 #include "headers/TradeArea.h"
 
 /**
- * @brief 
+ * @brief returns true if the card can be legally added to the TradeArea, i.e., a 
+card of the same bean is already in the TradeArea.
  * 
  * @param card 
  * @return true 
@@ -20,7 +21,7 @@ bool TradeArea::legal (Card* card){
 
 
 /**
- * @brief 
+ * @brief removes a card of the corresponding bean name from the trade area.
  * 
  * @param card 
  * @return Card* 
@@ -36,14 +37,13 @@ Card* TradeArea::trade (std::string card){
             tradeAr.erase(i); // delete the card found
             break;
         } 
-        
     }
-
+    
     return cardFound;
 }
 
 /**
- * @brief 
+ * @brief retourne the number of card inside the Trade Area
  * 
  * @return int 
  */
@@ -51,7 +51,7 @@ int TradeArea::numCards(){ return tradeAr.size(); }
 
 
 /**
- * @brief 
+ * @brief insertion operator to display the trade area object
  * 
  * @param output 
  * @param tr_arr 
@@ -68,8 +68,9 @@ std::ostream& operator<<(std::ostream& output, const TradeArea& tr_arr){
 
 
 /**
- * @brief 
+ * @brief write the TradeArea information inside a file
  * 
+ * @param filename 
  */
 void TradeArea::saveTradeArea(std::ofstream& filename){
     for(auto card: tradeAr){

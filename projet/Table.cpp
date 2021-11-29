@@ -2,7 +2,8 @@
 
 
 /**
- * @brief 
+ * @brief returns true when a player has won. The name of the player is 
+returned by reference (in the argument). 
  * 
  * @param pName 
  * @return true 
@@ -28,7 +29,8 @@ bool Table::win(std::string& pName){
 }
 
 /**
- * @brief 
+ * @brief  prints the top card of the player's hand (with argument false) or all 
+of the player's hand (with argument true).
  * 
  * @param in 
  */
@@ -38,7 +40,7 @@ void Table::printHand(bool in){
 }
 
 /**
- * @brief 
+ * @brief return the p1 when p_id = 0 and p2 when the p_id is something else
  * 
  * @param id 
  * @return Player* 
@@ -51,7 +53,7 @@ Player* Table::getPlayer(int id){
 
 
 /**
- * @brief 
+ * @brief insertion operator to display the table information
  * 
  * @param output 
  * @param tb 
@@ -59,18 +61,18 @@ Player* Table::getPlayer(int id){
  */
 std::ostream& operator<<( std::ostream& output,  const Table&  tb){
 
-        output << "Player 1 :" << std::endl << *(tb.p1) << std::endl;
-        output << "Player 2 :" << std::endl << *(tb.p2) << std::endl;
-        output << "Discard Pile :" << std::endl << *tb.dp << std::endl;
-        output << "Trade Area :" << std::endl << *tb.tradeAr << std::endl;
+    output << "Player 1 :" << std::endl << *(tb.p1) << std::endl;
+    output << "Player 2 :" << std::endl << *(tb.p2) << std::endl;
+    output << "Discard Pile :" << std::endl << *tb.dp << std::endl;
+    output << "Trade Area :" << std::endl << *tb.tradeAr << std::endl;
 
-        return output;
+    return output;
 };
 
 
 /**
  * 
- * @brief write the game into the related file
+ * @brief write the game into the related files
  * 
  */
 void Table::saveTable(){
@@ -95,9 +97,11 @@ void Table::saveTable(){
 
 }
 
+
 /**
- * @brief 
+ * @brief permet de recuperer l'information dans le fichier correspondant à l'idée du joueur correspondant
  * 
+ * @param p_id 
  */
 void Table::reloadPlayer(int p_id){
     std::ifstream file;

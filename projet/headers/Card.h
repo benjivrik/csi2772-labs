@@ -11,6 +11,12 @@ class Card{
     virtual void print(std::ostream& out)=0;
     virtual ~Card();
     void saveCard(std::ofstream& filename);
+    /**
+     * @brief insertion operator to display the first character of the card name
+     * 
+     * @param output 
+     * @return std::ostream& 
+     */
     std::ostream& operator<<(std::ostream& output){
         output << getName()[0] << std::endl;
         return output;

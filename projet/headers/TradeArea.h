@@ -12,7 +12,17 @@ class CardFactory;
 class TradeArea{
      std::list<Card*> tradeAr; 
      public:
+        /**
+         * @brief Construct a new Trade Area object
+         * 
+         */
         TradeArea(){};
+        /**
+         * @brief Construct a new Trade Area object from an istream
+         * 
+         * @param input 
+         * @param cf 
+         */
         TradeArea(std::istream& input, const CardFactory* cf){
             std::string line;
             Card* card = nullptr;
@@ -46,6 +56,12 @@ class TradeArea{
 
             std::cout << "TradeArea with " << count << " cards initialized from file properly." <<std::endl;
         };
+        /**
+         * @brief add a card inside the trade area
+         * 
+         * @param card 
+         * @return TradeArea& 
+         */
         TradeArea& operator+=(Card* card){
              if(this->legal(card)){
                  tradeAr.push_back(card);
