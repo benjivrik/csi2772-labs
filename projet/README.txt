@@ -6,4 +6,6 @@ Code du cours : CSI2772A
 
 Projet
 
-Pushed on 8-11-2021 : g++ .\Main.cpp .\Deck.cpp .\CardFactory.cpp .\Card.cpp -std=c++11
+How to run ?
+
+g++ *.cpp -std=c++11

@@ -128,6 +128,7 @@ class Player{
                              // add the chain if it has been initialized
                              if(new_chain != nullptr) {
                                  pChains.push_back(new_chain);
+                                 std::cout << "Collected Chain Type (Player - Var) : " << chainType << std::endl;
                                  std::cout << "Collected Chain Type (Player) : " << new_chain->getChainType() << std::endl;
                                  chain_idx++;
                              }

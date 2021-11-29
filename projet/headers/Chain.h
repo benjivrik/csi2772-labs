@@ -23,7 +23,7 @@ class Chain_Base{
             if(getSize() == 0)
                chainType = typeid(card).name();// update the chain type
 
-            // std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
+            std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
             chain.push_back(card);
             return *this;
         };
@@ -40,7 +40,10 @@ class Chain : public virtual Chain_Base{
          */
         Chain(){ 
             chainType = typeid(T).name();
-            // std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
+            if(std::isdigit(chainType.at(0)) ){
+                // std::cout<< "The collected digit is : " << chainType.at(0) << std::endl; // debug purpose
+                chainType =  chainType.substr(1,chainType.size()); // remove the first unexpected digit in the type name
+            }
         };
         Chain(std::istream&, const CardFactory*);
         /**
