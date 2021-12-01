@@ -23,24 +23,44 @@ Card* Player::playCard(){
         if(pChains.size() <= ALLOWED_CHAINS){
             card = pHand->play(); // should be play here...
             Chain_Base* new_chain;
-            if(card->getName() == "Blue") new_chain = new Chain<Blue>;
-            else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
-            else if(card->getName() == "Stink") new_chain = new Chain<Stink>;
-            else if(card->getName() == "Green") new_chain = new Chain<Green>;
-            else if(card->getName() == "soy")   new_chain = new Chain<soy>;
-            else if(card->getName() == "black") new_chain = new Chain<black>;
-            else if(card->getName() == "Red")   new_chain = new Chain<Red>;
-            else if(card->getName() == "garden")new_chain = new Chain<garden>;
-            else {
-                std::cout << "(playCard) Check the card name. Value received : " << card->getName() << std::endl;
-                new_chain = nullptr; 
-                exit(1);
-              
+            bool ExistingChain = false;
+            // check if the chain do not already in the hand of the player
+            for(Chain_Base* chain : pChains){
+                if(chain->getChainType() == card -> getName()){
+                    ExistingChain = true;
+                    new_chain = chain;
+                    break;
+
+                }
             }
-            pChains.push_back(new_chain);
+
+            // if the chain was not found, create a new one
+            if(!ExistingChain){
+                if(card->getName() == "Blue") new_chain = new Chain<Blue>;
+                else if(card->getName() == "Chili") new_chain = new Chain<Chili>;
+                else if(card->getName() == "Stink") new_chain = new Chain<Stink>;
+                else if(card->getName() == "Green") new_chain = new Chain<Green>;
+                else if(card->getName() == "soy")   new_chain = new Chain<soy>;
+                else if(card->getName() == "black") new_chain = new Chain<black>;
+                else if(card->getName() == "Red")   new_chain = new Chain<Red>;
+                else if(card->getName() == "garden")new_chain = new Chain<garden>;
+                else {
+                    std::cout << "(playCard) Check the card name. Value received : " << card->getName() << std::endl;
+                    new_chain = nullptr; 
+                    exit(1);
+                
+                }
+                pChains.push_back(new_chain);
+            }
+            if( (*new_chain).getSize() == 0 ){ // update the chain type if the chain type of Chain_Base if the chain is empty
+                (*new_chain).setChainType(card->getName());
+            }
+            *new_chain += card;
+       
+         
 
         }else{
-            std::cout << "Player " <<pName << "has reached the maximum allowed value of chain ("<<ALLOWED_CHAINS<<")." << std::endl;
+            std::cout << "Player " <<pName << " has reached the maximum allowed value of chain ("<<ALLOWED_CHAINS<<")." << std::endl;
            // item should be sold ?
         }
     }

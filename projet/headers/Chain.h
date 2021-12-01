@@ -18,12 +18,11 @@ class Chain_Base{
         int sell(){ return -1;}; // unimplemented
         int getSize();
         std::string getChainType();
+        void setChainType(std::string chainType);
         void saveChain(std::ofstream& filename);
         Chain_Base& operator+=(Card* card){
-            if(getSize() == 0)
-               chainType = typeid(card).name();// update the chain type
 
-            std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
+            // std::cout << "(Chain_Base.h) chainType : " << chainType << std::endl; // debug purpose
             chain.push_back(card);
             return *this;
         };

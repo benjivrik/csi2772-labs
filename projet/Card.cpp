@@ -62,7 +62,7 @@ string Blue::getName(){
  * @param out 
  */
 void Blue::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 /**
@@ -120,7 +120,7 @@ int Chili::getCardsPerCoin(int coins){
  * @param out 
  */
 void Chili::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 /**
@@ -180,7 +180,7 @@ int Stink::getCardsPerCoin(int coins){
  * @param out 
  */
 void Stink::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 // Green
@@ -239,7 +239,7 @@ int Green::getCardsPerCoin(int coins){
  * @param out 
  */
 void Green::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 // soy
@@ -298,7 +298,7 @@ int soy::getCardsPerCoin(int coins){
  * @param out 
  */
 void soy::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 // black
@@ -357,7 +357,7 @@ int black::getCardsPerCoin(int coins){
  * @param out 
  */
 void black::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 // Red
@@ -417,7 +417,7 @@ int Red::getCardsPerCoin(int coins){
  * @param out 
  */
 void Red::print(std::ostream& out){
-    out << this->getName()[0] << std::endl;
+    out << this->getName()[0];
 }
 
 /**

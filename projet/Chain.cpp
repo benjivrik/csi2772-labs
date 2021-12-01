@@ -10,6 +10,15 @@ int Chain_Base::getSize(){
 }
 
 /**
+ * @brief Set the ChainType of the Chain_Base
+ * 
+ * @param chainType 
+ */
+void Chain_Base::setChainType(std::string chainType){
+    chainType = chainType;
+}
+
+/**
  * @brief Get the Chain Type 
  * 
  * @return std::string 
