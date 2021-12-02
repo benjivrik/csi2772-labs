@@ -61,11 +61,11 @@ Player* Table::getPlayer(int id){
  */
 std::ostream& operator<<( std::ostream& output,  const Table&  tb){
 
-    output << "Player 1 :" << std::endl << *(tb.p1) << std::endl;
-    output << "Player 2 :" << std::endl << *(tb.p2) << std::endl;
-    output << "Discard Pile :" << std::endl << *tb.dp << std::endl;
-    output << "Trade Area :" << std::endl << *tb.tradeAr << std::endl;
-
+    output << "> Player 1 : " << std::endl << std::endl << *(tb.p1) << std::endl;
+    output << "> Player 2 : " << std::endl << std::endl << *(tb.p2) << std::endl;
+    output << "> Discard Pile (Top) : "  << *tb.dp << std::endl << std::endl;
+    output << "> Trade Area :"   << std::endl << std::endl << *tb.tradeAr << std::endl;
+    output << "_______________________" << std::endl;
     return output;
 };
 
@@ -138,10 +138,66 @@ void Table::reloadDeck(){
 }
 
 /**
+ * @brief reloads the discard pile from the saved file
+ * 
+ */
+void Table::reloadDiscardPile(){
+    std::ifstream dpFile("Saved-DiscardPile.txt"); // add this in table ?
+    if(dpFile.is_open()){
+        dp = new DiscardPile(dpFile,cf);
+    }else{
+        // file not found
+        dp =  new DiscardPile;
+        std::cout << "Saved-DiscardPile.txt not found. Using empty discard pile." << std::endl;
+    }
+}
+
+
+/**
+ * @brief reloads the trade area from the saved file
+ * 
+ */
+void Table::reloadTradeArea(){
+    std::ifstream trArFile("Saved-TradeArea.txt"); // add this in table ?
+    if(trArFile.is_open()){
+        tradeAr = new TradeArea(trArFile,cf);
+    }else{
+        // file not found
+        tradeAr =  new TradeArea;
+        std::cout << "Saved-TradeArea.txt not found. Using empty trade area." << std::endl;
+    }
+}
+
+
+
+/**
  * @brief returns the deck initialized in the table object
  * 
  * @return Deck* 
  */
 Deck* Table::getDeck(){
+    if(deck == nullptr){
+        deck =  cf -> getDeck();
+    }
     return deck;
+}
+
+
+/**
+ * @brief returns the discard pile of the table
+ * 
+ * @return DiscardPile* 
+ */
+DiscardPile* Table::getDiscardPile(){
+    return dp;
+}
+
+
+/**
+ * @brief returns the trade area of table
+ * 
+ * @return TradeArea* 
+ */
+TradeArea* Table::getTradeArea(){
+    return tradeAr;
 }

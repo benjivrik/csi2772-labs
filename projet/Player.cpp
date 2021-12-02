@@ -1,5 +1,6 @@
 #include "headers/Player.h"
 #include <string>
+#include <iomanip>
 
 /**
  * @brief Get the Name object
@@ -167,7 +168,7 @@ int Player::getNumCoins(){
  * @return std::ostream 
  */
 std::ostream& operator<<(std::ostream& output, const Player& player){
-    output << player.pName << " " << player.pCoins << " coins "<< std::endl;
+    output << player.pName << std::setw(5) << player.pCoins << " coins "<< std::endl;
     for(auto chain : player.pChains){
         output << *chain;
         output << std::endl;

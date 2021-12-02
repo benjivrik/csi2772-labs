@@ -18,7 +18,7 @@ Card* DiscardPile::pickUp(){
  * @return Card* 
  */
 Card* DiscardPile::top(){
-    return  this->front();
+    return this->back();
 }
 
 
@@ -29,22 +29,24 @@ Card* DiscardPile::top(){
  */
 void  DiscardPile::print(std::ostream& os){
     for(int i = 0; i < this->size(); i++){
-        os << this->at(i)->getName()[0]<< std::endl;
+        os << this->at(i)->getName()[0]<< " ";
     }
 }
 
 
 /**
- * @brief insertion operator to display the discard pile object
+ * @brief insertion operator to display the discard pile object (only the card on top of the discard pile)
  * 
  * @param output 
  * @param dp 
  * @return std::ostream& 
  */
 std::ostream& operator<<( std::ostream &output, const DiscardPile& dp ){
-    for(int i = 0; i < dp.size(); i++){
-        output << dp.at(i)->getName()[0] << std::endl;
-    }
+
+    if(dp.size() > 0)
+       (dp.back())->print(output);
+    else 
+       output << "";
 
     return output;
 }

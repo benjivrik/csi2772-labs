@@ -34,7 +34,6 @@ class Table{
             tradeAr = &tr_arr;
             deck = &dck;
             cf = &cfactory;
-            deck = cf ->getDeck();
         }
 
         /**
@@ -51,12 +50,16 @@ class Table{
         }
         bool win(std::string&);
         void printHand(bool);
-        Player* getPlayer(int);
         friend std::ostream& operator<<(std::ostream&,  const Table&);
         void saveTable();
         void reloadPlayer(int);
         void reloadDeck();
+        void reloadDiscardPile();
+        void reloadTradeArea();
         Deck* getDeck();
+        Player* getPlayer(int);
+        DiscardPile* getDiscardPile();
+        TradeArea* getTradeArea();
 
 };
 

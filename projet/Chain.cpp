@@ -1,4 +1,5 @@
 #include "headers/Chain.h"
+#include <iomanip>
 
 /**
  * @brief retourne le nombre de cartes dans le deck
@@ -140,7 +141,7 @@ std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d ){
  * @return std::ostream& 
  */
 std::ostream& operator<<( std::ostream &output, const Chain_Base & d ){
-    output << d.chainType << " ";
+    output << d.chainType  << " " << std::setw(4);
     for(int i = 0; i < d.chain.size(); i++){
         d.chain.at(i)->print(output);
         output << " ";
