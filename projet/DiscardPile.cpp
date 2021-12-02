@@ -28,9 +28,11 @@ Card* DiscardPile::top(){
  * @param os 
  */
 void  DiscardPile::print(std::ostream& os){
+
     for(int i = 0; i < this->size(); i++){
         os << this->at(i)->getName()[0]<< " ";
-    }
+    };
+  
 }
 
 

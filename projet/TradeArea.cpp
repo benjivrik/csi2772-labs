@@ -60,7 +60,7 @@ int TradeArea::numCards(){ return tradeAr.size(); }
 std::ostream& operator<<(std::ostream& output, const TradeArea& tr_arr){
 
     for(auto card : tr_arr.tradeAr){
-        output << card->getName() << std::endl;
+        output << card->getName()[0] << " ";
     }
 
     return output;

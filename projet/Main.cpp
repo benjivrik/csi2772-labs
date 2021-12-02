@@ -54,11 +54,11 @@ int main(){
         p1 = tb -> getPlayer(1);
         p2 = tb -> getPlayer(2);
 
-        tb -> reloadDiscardPile(); // reload the discard pile
+        tb -> reloadDiscardPile();   // reload the discard pile
         dp = tb -> getDiscardPile(); // get the discard pile
 
         tb -> reloadTradeArea();
-        trAr = tb -> getTradeArea();
+        trAr = tb -> getTradeArea(); // get the trade area
         
     } else {
         cout << std::endl;
@@ -77,10 +77,13 @@ int main(){
 
         tb = new Table(*p1,*p2,*dp, *trAr, *deck, *cf);
 
-        deck = tb ->getDeck();
+        deck = tb -> getDeck();        // get the deck
+        dp   = tb -> getDiscardPile(); // get the discard pile
+        trAr = tb -> getTradeArea();   // get the trade area
 
         std::cout << "Initializing  each player with 5 cards. " << std::endl;
         std::cout << "Current size of the deck : " << deck -> size() << std::endl;
+
         // initialize 5 cards to hand of each player
         for(int player = 0 ; player < MAX_NUM_PLAYER ; player++){
             for(int card = 0; card < 5; card++){
@@ -124,6 +127,9 @@ int main(){
                    // do something here
                }
 
+               // attempting to add card inside the trade area
+               *trAr+=(p->removeCard());
+
                
 
                std::cout << "Player " << i+1 << " Hand: " << std::endl;
@@ -134,13 +140,13 @@ int main(){
                // Play topmost card from Hand.
                std::cout << "Playing card ..." << std::endl;
                p->playCard();
-
-               *dp+= (p->removeCard()); // send a card to the discard pile
+              
+               if(p->getNumCards() > 0)
+                  *dp+= (p->removeCard()); // send a card to the discard pile
 
                std::cout << std::endl << "> Discard Pile all cards : " ;
                dp->print(std::cout);
                std::cout << std::endl;
-
                
            }
        }

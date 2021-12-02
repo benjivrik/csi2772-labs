@@ -12,6 +12,15 @@ std::string Player::getName(){
 }
 
 /**
+ * @brief get the number of cards insidde the hand of the player
+ * 
+ * @return int 
+ */
+int Player::getNumCards(){
+    return pHand->numCards();
+}
+
+/**
  * @brief creates the chain when the card is played and returns that card
  * 
  * @return Card* 

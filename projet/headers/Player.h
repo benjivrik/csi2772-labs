@@ -192,13 +192,14 @@ class Player{
         };
 
         void takeCard(Card*); // added
-        Card* playCard();    // added
-        Card* removeCard(); // discard card to the pile
+        Card* playCard();     // added
+        Card* removeCard();   // discard card to the pile
 
         std::string getName();
         int getNumCoins();
         int getMaxNumChains();
         int getNumChains();
+        int getNumCards(); // get the number of cards inside the hand
         void buyThirdChain();
 
         /**
