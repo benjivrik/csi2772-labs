@@ -34,7 +34,6 @@ class DiscardPile:  public std::vector<Card*>{
                 std::istringstream iss(line);
                 std::string data;
                 if (!(iss >> data)) { 
-                    // std::cout<< "Empty" <<std::endl;
                     continue;
                 } 
                 // std::cout << data << std::endl; //debug purpose

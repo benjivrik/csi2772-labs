@@ -151,12 +151,21 @@ void Player::takeCard(Card* card){
 
 
 /**
- * @brief remove the top card of the hand of the player and return the corresponding card
+ * @brief remove the top card from the hand of the player  at the specified position and return the corresponding card
  * 
  * @return Card* 
  */
-Card* Player::removeCard(){
-    return pHand->play();
+Card* Player::removeCard(int pos){
+    Card* card = nullptr;
+    if(pos >  pHand->numCards()-1){
+        std::cout << "Please specify the proper index to remove from the pHand. " << std::endl;
+        std::cout << "Entered idx : " << pos << std::endl;
+        std::cout << "Current size of hands : " << pHand->numCards() << std::endl;
+        std::cout << "Card not removed." << std::endl;
+    }else{
+        card = (*pHand)[pos];
+    }
+    return card;
 }
 
 /**

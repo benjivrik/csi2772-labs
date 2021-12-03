@@ -191,10 +191,9 @@ class Player{
             return *(pChains.at(i));
         };
 
-        void takeCard(Card*); // added
-        Card* playCard();     // added
-        Card* removeCard();   // discard card to the pile
-
+        void takeCard(Card*); 
+        Card* playCard();     
+        Card* removeCard(int = 0); 
         std::string getName();
         int getNumCoins();
         int getMaxNumChains();

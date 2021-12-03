@@ -61,7 +61,7 @@ class Chain : public virtual Chain_Base{
                 chain.push_back(card);
                 return *this;
             } 
-            else throw std::bad_exception("Illegal Type");
+            else throw "IllegalType";
         };
         int sell();
         friend std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d );

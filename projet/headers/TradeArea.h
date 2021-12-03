@@ -11,19 +11,20 @@ class CardFactory;
 
 class TradeArea{
      std::list<Card*> tradeAr; 
+     const int MAX_CARDS;
      public:
         /**
          * @brief Construct a new Trade Area object
          * 
          */
-        TradeArea(){};
+        TradeArea():MAX_CARDS(3){};
         /**
          * @brief Construct a new Trade Area object from an istream
          * 
          * @param input 
          * @param cf 
          */
-        TradeArea(std::istream& input, const CardFactory* cf){
+        TradeArea(std::istream& input, const CardFactory* cf):MAX_CARDS(3){
             std::string line;
             Card* card = nullptr;
             int count = 0;
@@ -66,9 +67,12 @@ class TradeArea{
              if(this->legal(card)){
                  tradeAr.push_back(card);
              }else{
-                 std::cout<< "The card [" << card->getName() << "] can not be added to the Trade Area." << std::endl;
+                 if(tradeAr.size() < 3){
+                     tradeAr.push_back(card);
+                 }else{
+                     std::cout<< "The card [" << card->getName() << "] can not be added to the Trade Area." << std::endl;
+                 }
              }
-             
              return *this;
         };
         bool legal(Card*);

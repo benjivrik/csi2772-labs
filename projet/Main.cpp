@@ -116,33 +116,75 @@ int main(){
 
                Player* p = tb -> getPlayer(i);  // get the current player
              
-
                // Play topmost card from Hand.
                p->takeCard(deck->draw());
 
                // 
                if(trAr->numCards() > 0) {
                    // do something here
-               }else{
-                   // do something here
                }
 
+               // Play topmost card from Hand.
+               std::cout << std::endl << "Playing card ..." << std::endl;
+               p->playCard();
+
+               // If chain is ended, cards for chain are removed and player receives coin(s).
+               std::cout << std::endl << "> Play top most card ? (y) or Discard card to Discard Pile? (n) " << std::endl;
+
+               std::cin >> user_input; 
+
+               if(user_input[0] == 'y'){
+                   // Play the now topmost card from Hand. 
+                   p -> playCard();
+               }else{
+                   int idx; 
+                   Card* card = nullptr;
+                   // Show the player's full hand and player selects an arbitrary card
+                   std::cout << std::endl << "Player " << i+1 << " Hand: " << std::endl;
+                   p->printHand(std::cout, true);
+                   std::cout << "Current size of the hand : " << p->getNumCards() << std::endl;
+                   std::cout << "Enter the index of the card you would like to remove : " << std::endl;
+                   std::cin  >> idx;
+                   // Discard the arbitrary card from the player's hand and place it on the discard pile.
+                   card = p->removeCard(idx);
+                   if(card == nullptr)
+                      std::cout << "Card not could be removed. Please check the entered index : " << idx << std::endl;
+                  
+                   // enter the proper index
+                   while(card == nullptr){
+                      std::cout << "Current size of the hand : " << p->getNumCards() << std::endl;
+                      std::cout << "Enter the index of the card you would like to remove : " << std::endl;
+                      std::cin  >> idx;
+                      // Discard the arbitrary card from the player's hand and place it on the discard pile.
+                      card = p->removeCard(idx);
+                   }
+                   
+                   // add the card to the discard pile
+                   std::cout << "> Card : " ;
+                   card->print(std::cout);
+                   std::cout << " added to the discard pile " << std::endl;
+                   *dp+= card;
+               }
+
+               // Draw three cards from the deck and place cards in the trade area
+               std::cout << std::endl << ">>>> Drawing three cards from the deck to the trade area. " << std::endl << std::endl;
+               for(int drw = 0 ;  drw < 3; drw++){
+                   *trAr += (deck -> draw());
+               }
+                std::cout << "> Trade Area : " << *trAr << std::endl;
+
                // attempting to add card inside the trade area
-               *trAr+=(p->removeCard());
+            //    *trAr+=(p->removeCard());
 
-               
-
-               std::cout << "Player " << i+1 << " Hand: " << std::endl;
+             
               
-               p->printHand(std::cout, true);
+              
                // p->printHand(std::cout, false);
 
-               // Play topmost card from Hand.
-               std::cout << "Playing card ..." << std::endl;
-               p->playCard();
+               
               
                if(p->getNumCards() > 0)
-                  *dp+= (p->removeCard()); // send a card to the discard pile
+                 //   *dp+= (p->removeCard()); // send a card to the discard pile
 
                std::cout << std::endl << "> Discard Pile all cards : " ;
                dp->print(std::cout);
