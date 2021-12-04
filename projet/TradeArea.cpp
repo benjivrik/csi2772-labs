@@ -80,3 +80,12 @@ void TradeArea::saveTradeArea(std::ofstream& filename){
 
     std::cout << "TradeArea saved." << std::endl;
 }
+
+/**
+ * @brief return the trade area list of cards
+ * 
+ * @return std::list<Card*> 
+ */
+std::list<Card*> TradeArea::getListOfCards(){
+    return tradeAr;
+}

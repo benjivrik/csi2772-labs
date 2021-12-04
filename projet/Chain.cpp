@@ -93,6 +93,8 @@ int Chain<T>::sell(){
             }
         }
     }
+    if(value == -1) value = 0; // put it back to zero
+    std::cout << "value : " << value << std::endl;
     return value;
 }
 

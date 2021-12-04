@@ -7,7 +7,6 @@
 using namespace std;
 
 
-
 int main(){
     std::cout << "-------------------------------------------"<< std::endl;
     std::cout << "(FALL2021) - CSI2772 -  Project (Card Game)" << std::endl;
@@ -119,16 +118,32 @@ int main(){
                // Play topmost card from Hand.
                p->takeCard(deck->draw());
 
-               // 
+               // Add bean cards from the TradeArea to chains or discard them
                if(trAr->numCards() > 0) {
-                   // do something here
+                   bool cardAdded = false;
+                   // Add bean cards from the TradeArea to chains or discard them
+                   for( Card* card : trAr->getListOfCards() ){
+                        for( Chain_Base* chain : *(p->getChains()) ){
+                            if(card->getName() == chain->getChainType()){
+                               *chain += trAr->trade(card->getName());
+                               cardAdded = true;
+                            }
+                        }
+
+                        // discard the card to the discard pile if the card was not added
+                        if(!cardAdded){
+                           *dp+=trAr->trade(card->getName());
+                        }
+                   }
                }
 
+               std::cout <<  "Playing topmost card from Hand..." << std::endl;
                // Play topmost card from Hand.
-               std::cout << std::endl << "Playing card ..." << std::endl;
+               // If chain is ended, cards for chain are removed and player receives coin(s).
                p->playCard();
 
-               // If chain is ended, cards for chain are removed and player receives coin(s).
+               
+
                std::cout << std::endl << "> Play top most card ? (y) or Discard card to Discard Pile? (n) " << std::endl;
 
                std::cin >> user_input; 
@@ -137,14 +152,18 @@ int main(){
                    // Play the now topmost card from Hand. 
                    p -> playCard();
                }else{
+
                    int idx; 
                    Card* card = nullptr;
                    // Show the player's full hand and player selects an arbitrary card
                    std::cout << std::endl << "Player " << i+1 << " Hand: " << std::endl;
                    p->printHand(std::cout, true);
+                   
+                   // p->printHand(std::cout, false);
                    std::cout << "Current size of the hand : " << p->getNumCards() << std::endl;
                    std::cout << "Enter the index of the card you would like to remove : " << std::endl;
                    std::cin  >> idx;
+
                    // Discard the arbitrary card from the player's hand and place it on the discard pile.
                    card = p->removeCard(idx);
                    if(card == nullptr)
@@ -173,18 +192,38 @@ int main(){
                }
                 std::cout << "> Trade Area : " << *trAr << std::endl;
 
-               // attempting to add card inside the trade area
-            //    *trAr+=(p->removeCard());
+               // while top card of discard pile matches an existing card in the trade area
+               while( trAr->legal(dp-> top())){
+                   // draw the top-most card from the discard pile and place it in the trade area
+                   *trAr += (dp->pickUp());
+               }
 
-             
-              
-              
-               // p->printHand(std::cout, false);
+               std::cout << std::endl;
 
+               for(Card* card : trAr->getListOfCards()){
+                   std::cout << std::endl << "> Do you want to chain the card [";
+                   card -> print(std::cout);
+                   std::cout << "]? (y/n) " << std::endl;
+                   std::cin >> user_input; 
+
+                   if(user_input[0] == 'y'){
+                      // chain the card.
+                      p -> takeCard(trAr -> trade(card->getName()));
+                      p -> playCard();
+
+                    }else{
+                      
+                      std::cout << std::endl << "> card left in the trade area." << std::endl;
+                                         
+
+                    }
+
+               }
                
-              
-               if(p->getNumCards() > 0)
-                 //   *dp+= (p->removeCard()); // send a card to the discard pile
+               // Draw two cards from Deck and add the cards to the player's hand (at the back).
+               for(int i = 0; i < 2; i++){
+                   p -> takeCard(deck->draw());
+               }
 
                std::cout << std::endl << "> Discard Pile all cards : " ;
                dp->print(std::cout);
@@ -192,8 +231,10 @@ int main(){
                
            }
        }
-       deck->draw(); // remove this line when the logic is implemented
-    }
+    } // end of while loop with deck
+
+    tb->win(winner_name);
+    std::cout << std::endl << "> The winner is : " << winner_name << std::endl;
 
 
     return 0;

@@ -78,6 +78,7 @@ class Hand{
         Card* play();
         Card* top();
         Card* getCard(int pos);
+        std::queue <Card*, std::list<Card*>>* getListOfCards();
         /**
          * @brief  returns and removes the Card at a given index
          * 
@@ -111,6 +112,8 @@ class Hand{
                 pHand.push(temp_card); // add the card in the queue
                 
             }
+
+            // std::cout << "pos : " << std::endl;
             return card;  
         };
         int numCards();

@@ -15,7 +15,7 @@ class Chain_Base{
         std::vector<Card*>  chain;
         std::string chainType;
     public:
-        int sell(){ return -1;}; // unimplemented
+        int sell(){return 0;} ; // unimplemented
         int getSize();
         std::string getChainType();
         void setChainType(std::string chainType);

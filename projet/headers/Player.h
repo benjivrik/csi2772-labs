@@ -199,6 +199,8 @@ class Player{
         int getMaxNumChains();
         int getNumChains();
         int getNumCards(); // get the number of cards inside the hand
+        Hand* getHand();
+        std::vector<Chain_Base*>* getChains();
         void buyThirdChain();
 
         /**

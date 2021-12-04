@@ -80,6 +80,7 @@ class TradeArea{
         int numCards();
         friend std::ostream& operator<<( std::ostream&, const TradeArea&  );
         void saveTradeArea(std::ofstream& filename);
+        std::list<Card*> getListOfCards();
 
 };
 

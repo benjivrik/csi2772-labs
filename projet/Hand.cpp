@@ -115,3 +115,12 @@ void Hand::saveHand(std::ofstream& filename){
 
     std::cout << "Hand saved." << std::endl;
 }
+
+/**
+ * @brief Get the List Of Cards inside the hand
+ * 
+ * @return std::queue <Card*, std::list<Card*>> 
+ */
+std::queue <Card*, std::list<Card*>> * Hand::getListOfCards(){
+    return &pHand;
+}
