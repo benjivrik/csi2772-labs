@@ -223,8 +223,7 @@ Card* Player::removeCard(int pos){
         std::cout << "Card not removed." << std::endl;
     }else{
         card = (*pHand)[pos];
-        std::cout << "Testing card : " << (card==nullptr) << std::endl;
-        std::cout << "pos : " <<  pos << std::endl;
+
     }
     return card;
 }
