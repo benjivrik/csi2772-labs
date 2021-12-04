@@ -91,7 +91,7 @@ class Hand{
             Card* temp_card = nullptr;  // temp card
             int find_idx = 0;
             while(!pHand.empty()){
-                if(find_idx == pos){
+                if(find_idx++ == pos){
                     // do not add the element in the temporary queue
                     card = pHand.front();
                     pHand.pop();
@@ -113,7 +113,7 @@ class Hand{
                 
             }
 
-            // std::cout << "pos : " << std::endl;
+            std::cout << "pos : " << std::endl;
             return card;  
         };
         int numCards();
