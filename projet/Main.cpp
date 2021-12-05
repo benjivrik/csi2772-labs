@@ -1,4 +1,3 @@
-
 #include "headers/Main.h"
 #include <fstream>
 #include <sstream>
@@ -94,7 +93,7 @@ int main(){
     // proceed with the game loop
     while(deck->size() != 0){
        std::cout << "Number of card left in Deck : " << deck->size() << std::endl;
-       std::cout << "Do you want to pause and save the game ? (y/n)" << std::endl;
+       std::cout << std::endl << ">>>>>>>>>>> Do you want to pause and save the game ? (y/n)" << std::endl;
        std::cin >> user_input;
        if(user_input[0] == 'y'){
            // proceed with the logic for pausing the game
@@ -115,8 +114,13 @@ int main(){
 
                Player* p = tb -> getPlayer(i);  // get the current player
              
-               // Play topmost card from Hand.
+               std::cout <<  "> Drawing top card from deck..." << std::endl;
+               //  Player draws top card from Deck
                p->takeCard(deck->draw());
+
+               std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
+               p->printHand(std::cout, true);
+               std::cout << std::endl;
 
                // Add bean cards from the TradeArea to chains or discard them
                if(trAr->numCards() > 0) {
@@ -132,31 +136,48 @@ int main(){
 
                         // discard the card to the discard pile if the card was not added
                         if(!cardAdded){
+                           std::cout << "> Card : " ;
+                           card->print(std::cout);
+                           std::cout << " added to the discard pile " << std::endl;
                            *dp+=trAr->trade(card->getName());
                         }
                    }
                }
 
-               std::cout <<  "Playing topmost card from Hand..." << std::endl;
+               std::cout << std::endl << "> Playing topmost card from Hand (" << p->getHand()->top()->getName()[0] <<")" << std::endl;
                // Play topmost card from Hand.
                // If chain is ended, cards for chain are removed and player receives coin(s).
                p->playCard();
 
-               
+               std::cout << std::endl <<  *p << std::endl;
+
+               std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
+               p->printHand(std::cout, true);
+               std::cout << std::endl;
 
                std::cout << std::endl << "> Play top most card ? (y) or Discard card to Discard Pile? (n) " << std::endl;
+
 
                std::cin >> user_input; 
 
                if(user_input[0] == 'y'){
+
+                   std::cout <<  "> Playing topmost card from Hand (" << p->getHand()->top()->getName()[0] <<")" << std::endl;
                    // Play the now topmost card from Hand. 
                    p -> playCard();
+
+                   std::cout << std::endl <<  *p << std::endl;
+
+                   std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
+                   p->printHand(std::cout, true);
+                   std::cout << std::endl;
+
                }else{
 
                    int idx; 
                    Card* card = nullptr;
                    // Show the player's full hand and player selects an arbitrary card
-                   std::cout << std::endl << "Player " << i+1 << " Hand: " << std::endl;
+                   std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
                    p->printHand(std::cout, true);
                    
                    // p->printHand(std::cout, false);
@@ -190,12 +211,16 @@ int main(){
                for(int drw = 0 ;  drw < 3; drw++){
                    *trAr += (deck -> draw());
                }
-                std::cout << "> Trade Area : " << *trAr << std::endl;
 
+               std::cout << "> Trade Area : " << *trAr << std::endl;
+
+               // std::cout << "Dp size : " << dp->size() << std::endl;
                // while top card of discard pile matches an existing card in the trade area
-               while( trAr->legal(dp-> top())){
-                   // draw the top-most card from the discard pile and place it in the trade area
-                   *trAr += (dp->pickUp());
+               if(dp->size() > 0){
+                   while( trAr->legal(dp-> top())){
+                        // draw the top-most card from the discard pile and place it in the trade area
+                        *trAr += (dp->pickUp());
+                    }
                }
 
                std::cout << std::endl;
@@ -208,14 +233,18 @@ int main(){
 
                    if(user_input[0] == 'y'){
                       // chain the card.
-                      p -> takeCard(trAr -> trade(card->getName()));
-                      p -> playCard();
+                      p -> playCard(trAr -> trade(card->getName()),  true);
+
+                      std::cout << std::endl <<  *p << std::endl;
+
+                      std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
+                      p->printHand(std::cout, true);
+                      std::cout << std::endl;
 
                     }else{
                       
                       std::cout << std::endl << "> card left in the trade area." << std::endl;
                                          
-
                     }
 
                }
@@ -225,6 +254,10 @@ int main(){
                    p -> takeCard(deck->draw());
                }
 
+               std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
+               p->printHand(std::cout, true);
+               std::cout << std::endl;
+
                std::cout << std::endl << "> Discard Pile all cards : " ;
                dp->print(std::cout);
                std::cout << std::endl;
@@ -233,10 +266,11 @@ int main(){
        }
     } // end of while loop with deck
 
-    tb->win(winner_name);
-    std::cout << std::endl << "> The winner is : " << winner_name << std::endl;
-
-
+    if(deck->size() == 0){
+       tb->win(winner_name);
+       std::cout << std::endl << "> The winner is : " << winner_name << std::endl;
+    }
+    
     return 0;
 };
 

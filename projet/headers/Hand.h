@@ -112,8 +112,6 @@ class Hand{
                 pHand.push(temp_card); // add the card in the queue
                 
             }
-
-            std::cout << "pos : " << std::endl;
             return card;  
         };
         int numCards();

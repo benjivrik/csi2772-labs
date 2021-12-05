@@ -1,6 +1,7 @@
 #include "headers/Player.h"
 #include <string>
 #include <iomanip>
+#include <stdexcept>
 
 /**
  * @brief Get the Name object
@@ -25,22 +26,32 @@ int Player::getNumCards(){
  * 
  * @return Card* 
  */
-Card* Player::playCard(){
+Card* Player::playCard(Card* input, bool specified_input){
     Card* card = nullptr;
     if (pHand->numCards() < 0)
         std::cout << "(PlayCard) Not enough card in hand for player : " << pName << std::endl;
     else{
-        card = pHand->top();
+
+        if(!specified_input)
+            card = pHand->top();
+        else
+            card = input;
+        
         Chain_Base* new_chain;
         bool ExistingChain = false;
         char user_input[2];
 
         // check if the chain do not already in the hand of the player
-        for(Chain_Base* chain : pChains){
+        for(Chain_Base* chain : pChains){ 
             if(chain->getChainType() == card -> getName()){
                 ExistingChain = true;
                 new_chain = chain;
-                card = pHand -> play();
+                if(!specified_input)
+                   card = pHand -> play();
+                
+                if(card == nullptr)  // to avoid bugs
+                   card = pHand -> play();
+
                 *new_chain += card;
                 break;
             }
@@ -69,8 +80,51 @@ Card* Player::playCard(){
                // MAX_NUM_CHAINS
               std::cout << "Player " <<pName << " has reached the maximum  value of chain ("<<MAX_NUM_CHAINS<<")." << std::endl;
               std::cout << "> Selling Chain of type : " << pChains.back()->getChainType() << std::endl;
-              std::cout << "Acquiring " << pChains.back()->sell() << " coins" << std::endl;
-              pCoins += pChains.back()->sell();
+
+              if(pChains.back()->getChainType() == "Blue"){
+                  Chain<Blue>* chain = dynamic_cast<Chain<Blue>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              }
+              else if(pChains.back()->getChainType() == "Chili"){
+                  Chain<Chili>* chain = dynamic_cast<Chain<Chili>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              } 
+              else if(pChains.back()->getChainType() == "Stink"){
+                  Chain<Stink>* chain = dynamic_cast<Chain<Stink>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              } 
+              else if(pChains.back()->getChainType() == "Green"){
+                  Chain<Green>* chain = dynamic_cast<Chain<Green>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              } 
+              else if(pChains.back()->getChainType() == "soy"){
+                  Chain<soy>* chain  = dynamic_cast<Chain<soy>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              }   
+              else if(pChains.back()->getChainType() == "black"){
+                  Chain<black>* chain = dynamic_cast<Chain<black>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              } 
+              else if(pChains.back()->getChainType() == "Red"){
+                  Chain<Red>* chain  = dynamic_cast<Chain<Red>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              }  
+              else if(pChains.back()->getChainType() == "garden"){
+                  Chain<garden>* chain = dynamic_cast<Chain<garden>*> (pChains.back());
+                  std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                  pCoins += chain->sell();
+              }
+              else {
+                std::cout << "(playCard) Check the chain type. Value received : " << pChains.back()->getChainType() << std::endl;
+                exit(1);
+              }
               pChains.pop_back(); // remove the chain
 
             }
@@ -82,8 +136,8 @@ Card* Player::playCard(){
                 card = pHand->play();
                 *new_chain += card;
             }else{
-                std::cout << "Player " <<pName << " has reached the maximum allowed value of chain ("<<ALLOWED_CHAINS<<")." << std::endl;
-                std::cout << "> Do you want to buy a third chain ? (y/n)" << std::endl;
+                std::cout << ">>> Player " <<pName << " has reached the maximum allowed value of chain ("<<ALLOWED_CHAINS<<")." << std::endl;
+                std::cout << std::endl << "> Do you want to buy a third chain ? (y/n)" << std::endl;
                 std::cin >> user_input;
                 if(user_input[0] == 'y'){
                     // buy a third chain
@@ -101,8 +155,52 @@ Card* Player::playCard(){
                 else{
                   
                   std::cout << "> Selling Chain of type : " << pChains.back()->getChainType() << std::endl;
-                  std::cout << "Acquiring " << pChains.back()->sell() << " coins" << std::endl;
-                  pCoins += pChains.back()->sell();
+
+                  if(pChains.back()->getChainType() == "Blue"){
+                     Chain<Blue>* chain = dynamic_cast<Chain<Blue>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                  }
+                  else if(pChains.back()->getChainType() == "Chili"){
+                     Chain<Chili>* chain =  dynamic_cast<Chain<Chili>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                  } 
+                  else if(pChains.back()->getChainType() == "Stink"){
+                     Chain<Stink>* chain =  dynamic_cast<Chain<Stink>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                  } 
+                  else if(pChains.back()->getChainType() == "Green"){
+                     Chain<Green>* chain =  dynamic_cast<Chain<Green>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                 } 
+                 else if(pChains.back()->getChainType() == "soy"){
+                     Chain<soy>* chain  =  dynamic_cast<Chain<soy>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                 }   
+                 else if(pChains.back()->getChainType() == "black"){
+                     Chain<black>* chain =  dynamic_cast<Chain<black>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                 } 
+                 else if(pChains.back()->getChainType() == "Red"){
+                     Chain<Red>* chain  =  dynamic_cast<Chain<Red>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                 }  
+                 else if(pChains.back()->getChainType() == "garden"){
+                     Chain<garden>* chain =  dynamic_cast<Chain<garden>*>(pChains.back());
+                     std::cout << "> Acquiring " << chain->sell() << " coins" << std::endl;
+                     pCoins += chain->sell();
+                 }
+                 else {
+                     std::cout << "(playCard) Check the chain type. Value received : " << pChains.back()->getChainType() << std::endl;
+                     exit(1);
+                 }
+
                   pChains.pop_back(); // remove the chain
 
                   // starting a new chain 
@@ -168,7 +266,7 @@ then an exception NotEnoughCoins is thrown
  */
 void Player::buyThirdChain(){
     Card* card = nullptr;
-    if(pCoins % 3 == 0){
+    if( (pCoins % 3 == 0) && (pCoins > 0)  ){
         if(pChains.size() < MAX_NUM_CHAINS){
             pCoins -= 3;
             card = pHand->top();
@@ -194,7 +292,7 @@ void Player::buyThirdChain(){
         }
         
     }else{
-        throw "NotEnoughCoins";
+        throw std::runtime_error("NotEnoughCoins");
     }
 }
 

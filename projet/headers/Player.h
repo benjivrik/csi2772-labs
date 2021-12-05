@@ -192,7 +192,7 @@ class Player{
         };
 
         void takeCard(Card*); 
-        Card* playCard();     
+        Card* playCard(Card* input = nullptr, bool specified_input = false);     
         Card* removeCard(int = 0); 
         std::string getName();
         int getNumCoins();
