@@ -222,6 +222,7 @@ class Player{
         
         friend std::ostream& operator<<(std::ostream&,  const Player& );
         void savePlayer(int p_id);
+        void checkEndedChains();
         
 };
 

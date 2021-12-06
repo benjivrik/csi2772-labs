@@ -164,8 +164,9 @@ int main(){
 
                    std::cout <<  "> Playing topmost card from Hand (" << p->getHand()->top()->getName()[0] <<")" << std::endl;
                    // Play the now topmost card from Hand. 
+                   // If chain is ended, cards for chain are removed and player receives coin(s).
                    p -> playCard();
-
+                   
                    std::cout << std::endl <<  *p << std::endl;
 
                    std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
@@ -251,7 +252,8 @@ int main(){
                
                // Draw two cards from Deck and add the cards to the player's hand (at the back).
                for(int i = 0; i < 2; i++){
-                   p -> takeCard(deck->draw());
+                   if(deck->size() > 0 )
+                      p -> takeCard(deck->draw());
                }
 
                std::cout << std::endl << "> Player " << i+1 << " Hand: " << std::endl;
@@ -267,6 +269,9 @@ int main(){
     } // end of while loop with deck
 
     if(deck->size() == 0){
+       // display table
+       std::cout << std::endl <<  ">>>> Table information: <<<<" << std::endl << std::endl << *tb << std::endl;
+       std::cout << "> No card left in deck. Deck size = " << deck->size() << std::endl;
        tb->win(winner_name);
        std::cout << std::endl << "> The winner is : " << winner_name << std::endl;
     }

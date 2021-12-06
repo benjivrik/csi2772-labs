@@ -108,7 +108,6 @@ class Chain : public virtual Chain_Base{
          * @brief  counts the number cards in the current chain and returns the number coins 
         according to the function Card::getCardsPerCoin
          * 
-         * @tparam T 
          * @return int 
         */
         int sell(){
@@ -130,6 +129,8 @@ class Chain : public virtual Chain_Base{
             if(value == -1) value = 0; // put it back to zero
             return value;
         };
+
+
         friend std::ostream& operator<<( std::ostream &output, const Chain<Card*> & d );
         
 };
